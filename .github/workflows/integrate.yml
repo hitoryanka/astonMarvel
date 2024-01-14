@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v4
+      - name: Run lint
+        run: npm run lint
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
