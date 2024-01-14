@@ -27,11 +27,11 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'prettier/prettier': ['warn', { endOfLine: 'auto' }],
+    'prettier/prettier': ['warn', { endOfLine: 'auto', semi: true }],
   },
   settings: {
     react: {
       version: 'detect',
     },
   },
-}
+};

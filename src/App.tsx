@@ -1,5 +1,5 @@
 function App() {
-  return <>MARVEL wiki</>
+  return <>MARVEL wiki</>;
 }
 
-export default App
+export default App;
