@@ -1,11 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { authMatcher, getUser } from './lib/userLib';
 
-const initialState = {
-  email: `${localStorage.getItem('email')}`,
-  password: `${localStorage.getItem('password')}`,
-  favorites: `${localStorage.getItem('favorites')}`,
-  history: `${localStorage.getItem('history')}`,
-};
+const initialState = getUser();
 
 export interface UpdateUserAction {
   payload: {
@@ -25,6 +21,16 @@ const userSlice = createSlice({
       };
       // TODO after updating user need to update users array
     },
+  },
+  extraReducers(builder) {
+    builder.addMatcher(authMatcher, state => {
+      const { email, password, favorites, history } = getUser();
+
+      state.email = email;
+      state.password = password;
+      state.favorites = favorites;
+      state.history = history;
+    });
   },
 });
 

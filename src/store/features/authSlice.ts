@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { authorizeExisting, getUsers } from './lib/authLib';
+import {
+  authorizeExisting,
+  authorizeNew,
+  getUsers,
+} from './lib/authLib';
 import { User } from '../../types';
 
 type initialStateType = {
@@ -25,13 +29,19 @@ const authSlice = createSlice({
       );
 
       state.isError = isError;
-
-      if (isError) {
-        return;
-      }
+      if (isError) return;
 
       state.isLogged = true;
-      // TODO update user in extra reducer
+    },
+
+    signup(state, { payload }) {
+      const isError = authorizeNew(payload.email, payload.password);
+
+      state.isError = isError;
+
+      if (isError) return;
+
+      state.isLogged = true;
     },
   },
 });
@@ -41,4 +51,4 @@ export type authState = typeof initialState;
 export const getIsLogged = (state: authState) => state.isLogged;
 
 export default authSlice.reducer;
-export const { signin } = authSlice.actions;
+export const { signin, signup } = authSlice.actions;

@@ -43,3 +43,19 @@ export function authorizeExisting(email: string, password: string) {
 
   return null;
 }
+
+// returns error status
+export function authorizeNew(email: string, password: string) {
+  const user = findUser(email);
+
+  if (user) {
+    return new Error('user with this email already exists');
+  }
+
+  localStorage.setItem('email', email);
+  localStorage.setItem('password', password);
+  localStorage.setItem('favorites', '[]');
+  localStorage.setItem('history', '[]');
+
+  return null;
+}
