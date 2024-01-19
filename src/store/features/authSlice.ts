@@ -8,12 +8,12 @@ import { User } from '../../types';
 
 type initialStateType = {
   isLogged: boolean;
-  isError: null | Error;
+  isError: null | string;
   users: User[];
 };
 
 const initialState: initialStateType = {
-  isLogged: Boolean(localStorage.getItem('isLogged') === 'true'),
+  isLogged: localStorage.getItem('isLogged') === 'true',
   isError: null,
   users: getUsers(),
 };

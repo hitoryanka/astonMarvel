@@ -1,5 +1,12 @@
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import { Header } from './components/header/Header';
 function App() {
-  return <>MARVEL wiki</>;
+  return (
+    <Provider store={store}>
+      <Header />
+    </Provider>
+  );
 }
 
 export default App;

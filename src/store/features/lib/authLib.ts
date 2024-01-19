@@ -13,6 +13,15 @@ export function getUsers() {
   return users;
 }
 
+export function updateUsers(updatedUser: User) {
+  const users = getUsers().filter(
+    user => user.email !== updatedUser.email,
+  );
+  users.push(updatedUser);
+
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
 export function addUser(newUser: User) {
   const users = getUsers();
   users.push(newUser);
@@ -31,7 +40,7 @@ export function authorizeExisting(email: string, password: string) {
   const user = findUser(email);
 
   if (!user || user.password !== password) {
-    return new Error('Invalid credentials');
+    return 'Invalid credentials';
   }
 
   localStorage.setItem('email', user.email);
@@ -49,13 +58,22 @@ export function authorizeNew(email: string, password: string) {
   const user = findUser(email);
 
   if (user) {
-    return new Error('user with this email already exists');
+    return 'user with this email already exists';
   }
+
+  const newUser: User = {
+    email,
+    password,
+    favorites: [],
+    history: [],
+  };
 
   localStorage.setItem('email', email);
   localStorage.setItem('password', password);
   localStorage.setItem('favorites', '[]');
   localStorage.setItem('history', '[]');
+
+  updateUsers(newUser);
 
   return null;
 }
