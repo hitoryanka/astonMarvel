@@ -1,3 +1,6 @@
+import { useGetCharactersQuery } from '../../store/features/charactersApi';
+
 export function Heroes() {
-  return <span>Heroes list (sadly no heroes here)</span>;
+  const { data } = useGetCharactersQuery();
+  return <span>{data}</span>;
 }

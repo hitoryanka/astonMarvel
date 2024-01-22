@@ -36,7 +36,6 @@ const authSlice = createSlice({
 
     signup(state, { payload }) {
       const isError = authorizeNew(payload.email, payload.password);
-
       state.isError = isError;
 
       if (isError) return;
