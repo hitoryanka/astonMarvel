@@ -53,7 +53,7 @@ export function authorizeExisting(email: string, password: string) {
   return null;
 }
 
-// returns error status
+// TODO move localStorage side effects to custom middleware
 export function authorizeNew(email: string, password: string) {
   const user = findUser(email);
 
