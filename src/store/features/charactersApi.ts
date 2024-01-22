@@ -29,7 +29,7 @@ export const charactersApi = createApi({
 export const { useGetCharactersQuery, useGetCharacterQuery } =
   charactersApi;
 
+// TODO create design for character cards
 // TODO fetch details about characters from URLs field
 // TODO make initial styling for list and it's container
-// TODO handle logout in RTK
 // TODO handle logout in UI

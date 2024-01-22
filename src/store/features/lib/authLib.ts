@@ -1,4 +1,4 @@
-import { User } from '../../../types';
+import { User } from '../userSlice';
 
 export function getUsers() {
   const users: User[] | null = JSON.parse(
@@ -76,4 +76,11 @@ export function authorizeNew(email: string, password: string) {
   updateUsers(newUser);
 
   return null;
+}
+
+export function logoutUser() {
+  localStorage.removeItem('email');
+  localStorage.removeItem('password');
+  localStorage.removeItem('history');
+  localStorage.removeItem('favorites');
 }

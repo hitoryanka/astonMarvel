@@ -1,4 +1,4 @@
-import { User } from '../../../types';
+import { User } from '../userSlice';
 
 export function getUser(): User {
   return {
@@ -9,6 +9,14 @@ export function getUser(): User {
   };
 }
 
-export function authMatcher(actionType: string) {
-  return ['auth/signin', 'auth/signup'].includes(actionType);
+type Action = {
+  type: string;
+  payload: {
+    email: string;
+    password: string;
+  };
+};
+
+export function authMatcher({ type }: Action) {
+  return ['auth/signin', 'auth/signup'].includes(type);
 }

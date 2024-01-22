@@ -1,10 +1,3 @@
-export type User = {
-  email: string;
-  password: string;
-  favorites: string[];
-  history: string[];
-};
-
 // TODO expand on this later
 export type Character = {
   id: number;

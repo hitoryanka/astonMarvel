@@ -1,7 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './features/authSlice';
-import userReducer from './features/userSlice';
+import authReducer, { AuthState } from './features/authSlice';
+import userReducer, { User } from './features/userSlice';
 import { charactersApi } from './features/charactersApi';
+
+export type State = {
+  auth: AuthState;
+  user: User;
+};
 
 export const store = configureStore({
   reducer: {

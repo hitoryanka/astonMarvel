@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Heroes } from './components/heroes/Heroes';
-import { Signin } from './components/auth/Signin';
 import { Signup } from './components/auth/SIgnup';
+import { Signin } from './components/auth/Signin';
 import { Header } from './components/header/Header';
 
 export const router = createBrowserRouter([
