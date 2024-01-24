@@ -32,7 +32,6 @@ const userSlice = createSlice({
   extraReducers(builder) {
     builder.addMatcher(authMatcher, state => {
       const { email, password, favorites, history } = getUser();
-      console.log('hello?');
       state.email = email;
       state.password = password;
       state.favorites = favorites;

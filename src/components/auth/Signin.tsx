@@ -1,14 +1,28 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
-import { useDispatch } from 'react-redux';
-import { SyntheticEvent, useState } from 'react';
-import { signin } from '../../store/features/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import {
+  selectError,
+  selectIsLogged,
+  signin,
+} from '../../store/features/authSlice';
 
 export function Signin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const error = useSelector(selectError);
+  const isLogged = useSelector(selectIsLogged);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate('/heroes');
+    }
+  });
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -25,7 +39,10 @@ export function Signin() {
 
   return (
     <section className={s.wrapper}>
-      <h1>Login to your account</h1>
+      <header>
+        <h1>Login to your account</h1>
+        <p className={s.error}>{error && `Error: ${error}`}</p>
+      </header>
       <form action="" onSubmit={handleSubmit} className={s.form}>
         <div>
           <label className={s.label} htmlFor="email">

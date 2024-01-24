@@ -47,7 +47,6 @@ export function authorizeExisting(email: string, password: string) {
   localStorage.setItem('password', user.password);
   localStorage.setItem('favorites', JSON.stringify(user.favorites));
   localStorage.setItem('history', JSON.stringify(user.history));
-
   localStorage.setItem('isLogged', 'true');
 
   return null;
@@ -72,6 +71,7 @@ export function authorizeNew(email: string, password: string) {
   localStorage.setItem('password', password);
   localStorage.setItem('favorites', '[]');
   localStorage.setItem('history', '[]');
+  localStorage.setItem('isLogged', 'true');
 
   updateUsers(newUser);
 
@@ -83,4 +83,5 @@ export function logoutUser() {
   localStorage.removeItem('password');
   localStorage.removeItem('history');
   localStorage.removeItem('favorites');
+  localStorage.setItem('isLogged', 'false');
 }

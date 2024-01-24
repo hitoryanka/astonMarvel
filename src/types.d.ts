@@ -7,10 +7,19 @@ export type Character = {
     extension: string;
     path: string;
   };
+  comics: CharacterItems;
+  series: CharacterItems;
+  stories: CharacterItems;
+  events: CharacterItems;
+  urls: { type: string; url: string }[];
 };
 
-type ResponseWrapper = {
-  data: BasicResponse;
+type CharacterItems = {
+  available: number;
+  items: {
+    resourceURI: string;
+    name: string;
+  }[];
 };
 
 type BasicResponse = {

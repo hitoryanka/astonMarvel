@@ -15,6 +15,12 @@
   }
 }
 
+.error {
+  color: #ee171f;
+  font-size: 14px;
+  text-align: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;

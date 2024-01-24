@@ -31,5 +31,3 @@ export const { useGetCharactersQuery, useGetCharacterQuery } =
 
 // TODO create design for character cards
 // TODO fetch details about characters from URLs field
-// TODO make initial styling for list and it's container
-// TODO handle logout in UI

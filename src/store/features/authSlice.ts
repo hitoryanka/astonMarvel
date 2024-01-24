@@ -10,13 +10,13 @@ import { State } from '../store';
 
 type initialStateType = {
   isLogged: boolean;
-  isError: null | string;
+  error: null | string;
   users: User[];
 };
 
 const initialState: initialStateType = {
   isLogged: localStorage.getItem('isLogged') === 'true',
-  isError: null,
+  error: null,
   users: getUsers(),
 };
 
@@ -25,29 +25,29 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     signin(state, { payload }) {
-      const isError = authorizeExisting(
+      const error = authorizeExisting(
         payload.email,
         payload.password,
       );
 
-      state.isError = isError;
-      if (isError) return;
+      state.error = error;
+      if (error) return;
 
       state.isLogged = true;
     },
 
     signup(state, { payload }) {
-      const isError = authorizeNew(payload.email, payload.password);
-      state.isError = isError;
+      const error = authorizeNew(payload.email, payload.password);
+      state.error = error;
 
-      if (isError) return;
+      if (error) return;
 
       state.isLogged = true;
     },
 
     // every time user is updated it is synced "users", so I need just clear it from localStorage
     logout(state) {
-      state.isError = null;
+      state.error = null;
       state.isLogged = false;
       logoutUser();
     },
@@ -57,6 +57,7 @@ const authSlice = createSlice({
 export type AuthState = typeof initialState;
 
 export const selectIsLogged = (state: State) => state.auth.isLogged;
+export const selectError = (state: State) => state.auth.error;
 
 export default authSlice.reducer;
 export const { signin, signup, logout } = authSlice.actions;

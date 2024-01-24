@@ -1,14 +1,29 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
-import { SyntheticEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { signup } from '../../store/features/authSlice';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectError,
+  selectIsLogged,
+  signup,
+} from '../../store/features/authSlice';
 
+// TODO merge singup and signin - thinking props
 export function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const error = useSelector(selectError);
+  const isLogged = useSelector(selectIsLogged);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate('/heroes');
+    }
+  });
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -24,7 +39,10 @@ export function Signup() {
   };
   return (
     <section className={s.wrapper}>
-      <h1>Create new account</h1>
+      <header className={s.header}>
+        <h1>Create new account</h1>
+        <p className={s.error}>{error && `Error: ${error}`}</p>
+      </header>
       <form className={s.form} onSubmit={handleSubmit} action="">
         <div>
           <label className={s.label} htmlFor="email">
