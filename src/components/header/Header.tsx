@@ -4,7 +4,9 @@ import s from './styles.module.css';
 export function Header() {
   return (
     <header className={s.header}>
-      <a href="/heroes">heroes</a>
+      <a className={s.logo} href="/heroes">
+        MARVEL HEROES
+      </a>
       <AuthButtons />
     </header>
   );

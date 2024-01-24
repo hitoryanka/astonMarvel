@@ -3,8 +3,22 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: gray;
-  padding: 0 20px;
-  width: 1280px;
-  height: 100px;
+  background-color: #151515;
+  max-width: 1100px;
+  width: 75%;
+  height: 50px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #e62429;
+    height: 50px;
+
+    font-family: 'Marvel', sans-serif;
+    font-size: 24px;
+    padding: 5px;
+    text-decoration: none;
+    color: #fff;
+  }
 }

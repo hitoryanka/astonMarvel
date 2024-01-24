@@ -1,4 +1,25 @@
 .auth {
-  display: flex;
-  gap: 10px;
+  /* margin-right: 10px; */
+
+  .profile-pic {
+    width: 35px;
+    margin-right: 10px;
+  }
+
+  .auth-link-wrapper {
+    border: none;
+    height: 50px;
+    background-color: #151515;
+
+    .auth-link {
+      text-decoration: none;
+      font-size: 24px;
+      font-family: 'Marvel', sans-serif;
+      color: #fff;
+    }
+
+    &:hover {
+      background-color: grey;
+    }
+  }
 }

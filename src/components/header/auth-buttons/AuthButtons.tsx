@@ -1,36 +1,42 @@
 import { NavLink } from 'react-router-dom';
 import s from './styles.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  logout,
-  selectIsLogged,
-} from '../../../store/features/authSlice';
+import { useSelector } from 'react-redux';
+import { selectIsLogged } from '../../../store/features/authSlice';
 import { ReactElement } from 'react';
 
 export function AuthButtons() {
   const isLogged = useSelector(selectIsLogged);
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
 
   let content: ReactElement;
 
   if (isLogged) {
     content = (
-      <div className={s.auth}>
-        <button onClick={handleLogout}>logout</button>
-      </div>
+      <>
+        <NavLink to={'/user'} className={s['profile-pic-container']}>
+          <img
+            className={s['profile-pic']}
+            src="src\assets\profile-user.png"
+            alt="your profile"
+          />
+        </NavLink>
+      </>
     );
   } else {
     content = (
-      <div className={s.auth}>
-        <NavLink to="/auth/signin">signin</NavLink>
-        <NavLink to="/auth/signup">signup</NavLink>
-      </div>
+      <>
+        <button className={s['auth-link-wrapper']}>
+          <NavLink className={s['auth-link']} to="/auth/signup">
+            signup
+          </NavLink>
+        </button>
+        <button className={s['auth-link-wrapper']}>
+          <NavLink className={s['auth-link']} to="/auth/signin">
+            signin
+          </NavLink>
+        </button>
+      </>
     );
   }
 
-  return content;
+  return <div className={s.auth}>{content}</div>;
 }

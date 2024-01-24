@@ -1,0 +1,53 @@
+.heroes {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.hero-container {
+  position: relative;
+  /* background-color: #151515; */
+  width: 140px;
+  color: #fff;
+  height: 300px;
+  overflow: hidden;
+  clip-path: circle(135% at 0% 0%);
+
+  display: flex;
+  flex-direction: column;
+
+  .hero-thumbnail {
+    scale: 1;
+    transition: scale 0.3s;
+  }
+
+  .name-wrapper {
+    flex-grow: 1;
+    background-color: #151515;
+  }
+
+  .name-wrapper-curtain {
+    position: absolute;
+    background-color: #e62429;
+    height: 5px;
+    width: 100%;
+
+    transition: height 0.3s;
+  }
+
+  .hero-name {
+    position: sticky;
+    margin-left: 10px;
+    font-family: 'Marvel', sans-serif;
+  }
+
+  &:hover {
+    .hero-thumbnail {
+      scale: 1.1;
+    }
+
+    .name-wrapper-curtain {
+      height: 160px;
+    }
+  }
+}
