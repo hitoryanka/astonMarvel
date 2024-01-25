@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.user-email {
+  font-size: 36px;
+}
+
+.display-buttons {
+  display: flex;
+  gap: 60px;
+}
+
+.display-button {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.display-button-input {
+  /* display: none; */
+}
+
+.favorites {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}

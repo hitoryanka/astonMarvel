@@ -14,6 +14,12 @@ export type Character = {
   urls: { type: string; url: string }[];
 };
 
+export type FavoriteCharacter = {
+  id: number;
+  cover: string;
+  name: string;
+};
+
 type CharacterItems = {
   available: number;
   items: {

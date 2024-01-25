@@ -15,32 +15,6 @@
 
   display: flex;
   flex-direction: column;
-
-  .hero-thumbnail {
-    scale: 1;
-    transition: scale 0.3s;
-  }
-
-  .name-wrapper {
-    flex-grow: 1;
-    background-color: #151515;
-  }
-
-  .name-wrapper-curtain {
-    position: absolute;
-    background-color: #e62429;
-    height: 5px;
-    width: 100%;
-
-    transition: height 0.3s;
-  }
-
-  .hero-name {
-    position: sticky;
-    margin-left: 10px;
-    font-family: 'Marvel', sans-serif;
-  }
-
   &:hover {
     .hero-thumbnail {
       scale: 1.1;
@@ -50,4 +24,44 @@
       height: 160px;
     }
   }
+}
+
+.hero-thumbnail {
+  scale: 1;
+  transition: scale 0.3s;
+}
+
+.name-wrapper {
+  flex-grow: 1;
+  background-color: #151515;
+
+  display: flex;
+
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.name-wrapper-curtain {
+  position: absolute;
+  background-color: #e62429;
+  height: 5px;
+  width: 100%;
+
+  transition: height 0.3s;
+}
+
+.hero-name {
+  position: sticky;
+  margin-left: 10px;
+  font-family: 'Marvel', sans-serif;
+}
+
+.favorite-check {
+  position: sticky;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-bottom: 5px;
 }
