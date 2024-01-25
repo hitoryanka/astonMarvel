@@ -1,4 +1,3 @@
-import { FavoriteCharacter } from '../../../types';
 import { User } from '../userSlice';
 import { updateUsers } from './authLib';
 

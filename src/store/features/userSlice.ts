@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   authMatcher,
   getUser,
-  matcher,
   updateUser,
   userMatcher,
 } from './lib/userLib';
