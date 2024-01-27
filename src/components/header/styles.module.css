@@ -10,25 +10,16 @@
 }
 
 .logo {
-  letter-spacing: -3px;
+  letter-spacing: -4px;
+  font-family: 'Roboto Condensed', sans-serif;
   display: flex;
   align-items: center;
   box-sizing: border-box;
   background-color: #e62429;
   height: 50px;
 
-  font-family: 'Marvel', sans-serif;
   font-size: 32px;
   padding: 5px;
   text-decoration: none;
   color: #fff;
-}
-
-.search-input {
-  height: 30px;
-  border-radius: 5px;
-  border: none;
-  font-size: 24px;
-  color: #fff;
-  background-color: rgb(73, 66, 66);
 }

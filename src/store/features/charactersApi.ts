@@ -26,7 +26,7 @@ export const charactersApi = createApi({
     }),
 
     getCharacterByName: builder.query<CharacterResponse, string>({
-      query: name => `&nameStartsWith=${name}`,
+      query: name => `${SEARCH_PARAMS}&nameStartsWith=${name}`,
     }),
   }),
 });

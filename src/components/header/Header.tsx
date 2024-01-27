@@ -1,4 +1,5 @@
 import { AuthButtons } from './auth-buttons/AuthButtons';
+import { Search } from './search/Search';
 import s from './styles.module.css';
 
 export function Header() {
@@ -17,8 +18,4 @@ function Logo() {
       MARVEL HEROES
     </a>
   );
-}
-
-function Search() {
-  return <input className={s['search-input']} type="text" />;
 }

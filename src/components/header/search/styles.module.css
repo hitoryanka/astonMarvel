@@ -1,0 +1,9 @@
+.search-input {
+  font-family: 'Roboto Condensed', sans-serif;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  background-color: rgb(73, 66, 66);
+}

@@ -4,5 +4,8 @@
   gap: 40px;
   justify-content: center;
   align-items: center;
-  font-family: 'Marvel', sans-serif;
+
+  & > * {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
 }
