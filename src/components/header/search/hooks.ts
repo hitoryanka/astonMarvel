@@ -28,7 +28,6 @@ export function useDebounce(value: string, delay: number) {
     }, delay);
 
     return () => {
-      console.log('clearing timeout');
       clearTimeout(timeout);
     };
   }, [value, delay]);

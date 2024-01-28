@@ -2,7 +2,7 @@ import {
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-import { Character, CharacterResponse } from '../../types';
+import { Character } from '../../types';
 
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 const HASH_KEY = import.meta.env.VITE_HASH_KEY;
@@ -20,13 +20,14 @@ export const charactersApi = createApi({
       transformResponse: ({ data }) => data.results,
     }),
 
-    getCharacterById: builder.query<CharacterResponse, number>({
+    getCharacterById: builder.query<Character, number>({
       query: id => `/${id}${SEARCH_PARAMS}`,
       transformResponse: ({ data }) => data.results[0],
     }),
 
-    getCharacterByName: builder.query<CharacterResponse, string>({
+    getCharacterByName: builder.query<Character[], string>({
       query: name => `${SEARCH_PARAMS}&nameStartsWith=${name}`,
+      transformResponse: ({ data }) => data.results,
     }),
   }),
 });
