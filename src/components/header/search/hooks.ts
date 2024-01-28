@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 export function useSearchQuery() {
@@ -20,7 +20,7 @@ export function useSearchQuery() {
 }
 
 export function useDebounce(value: string, delay: number) {
-  const [searchQuery, setSearchQuery] = useSearchQuery();
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const timeout = setTimeout(() => {

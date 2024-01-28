@@ -1,16 +1,29 @@
 import s from './styles.module.css';
-import { SyntheticEvent, useState } from 'react';
-import { useDebounce } from './hooks';
+import r, { useState } from 'react';
+import { useDebounce, useSearchQuery } from './hooks';
 import { SearchSuggest } from './SearchSuggest';
 
 export function Search() {
   // TODO custom hook for setting search param
   const [search, setSearch] = useState('');
   const debouncedValue = useDebounce(search, 1500);
+  const [, setSearchQuery] = useSearchQuery();
 
-  const handleInputChange = ({ target }: SyntheticEvent) => {
+  const handleInputChange = ({
+    target,
+  }: r.ChangeEvent<HTMLInputElement>) => {
+    setSearch(target.value);
+  };
+
+  const handleKeyDown = ({ target, key }: r.KeyboardEvent) => {
     const input = target as HTMLInputElement;
-    setSearch(input.value);
+    if (key === 'Enter') {
+      setSearchQuery(search);
+      return;
+    }
+    if (key === 'Escape') {
+      input.blur();
+    }
   };
 
   return (
@@ -20,6 +33,7 @@ export function Search() {
         type="text"
         value={search}
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
         placeholder="Find your favorite hero!"
       />
       {debouncedValue !== '' && (

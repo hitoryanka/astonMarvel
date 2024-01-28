@@ -30,15 +30,6 @@ export function Heroes() {
   }
   return <span>doing something else?</span>;
 }
-// BUG I can't use description field since most of them are empty, and others are in HTML format
-// TODO provide list of ids to fetch popular heroes
-
-// TODO use nameStartsWith / titleStartsWith param for Search UI
-// TODO use modifiedSince param / orderBy=-modified
-// to get rid of old characters (must not affect search)
-
-// TODO paginate with limit and offset
-// TODO look for a way to add query params to RTK baseQuery
 
 interface heroCardProps {
   id: number;

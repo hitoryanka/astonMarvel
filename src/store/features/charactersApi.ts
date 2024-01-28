@@ -15,8 +15,13 @@ export const charactersApi = createApi({
     baseUrl: `http://gateway.marvel.com/v1/public/characters`,
   }),
   endpoints: builder => ({
-    getCharacters: builder.query<Character[], void>({
-      query: () => `${SEARCH_PARAMS}`,
+    getCharacters: builder.query<Character[], string | void>({
+      query: name => {
+        if (name) {
+          return `${SEARCH_PARAMS}&nameStartsWith=${name}`;
+        }
+        return `${SEARCH_PARAMS}`;
+      },
       transformResponse: ({ data }) => data.results,
     }),
 
@@ -24,19 +29,11 @@ export const charactersApi = createApi({
       query: id => `/${id}${SEARCH_PARAMS}`,
       transformResponse: ({ data }) => data.results[0],
     }),
-
-    getCharacterByName: builder.query<Character[], string>({
-      query: name => `${SEARCH_PARAMS}&nameStartsWith=${name}`,
-      transformResponse: ({ data }) => data.results,
-    }),
   }),
 });
 
-export const {
-  useGetCharactersQuery,
-  useGetCharacterByIdQuery,
-  useGetCharacterByNameQuery,
-} = charactersApi;
+export const { useGetCharactersQuery, useGetCharacterByIdQuery } =
+  charactersApi;
 
 // TODO create design for character cards
 // TODO fetch details about characters from URLs field

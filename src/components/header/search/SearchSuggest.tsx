@@ -1,4 +1,4 @@
-import { useGetCharacterByNameQuery } from '../../../store/features/charactersApi';
+import { useGetCharactersQuery } from '../../../store/features/charactersApi';
 import { memo } from 'react';
 import s from './styles.module.css';
 
@@ -9,7 +9,7 @@ interface Props {
 export const SearchSuggest = memo(function SearchSuggest(p: Props) {
   const { query } = p;
   const { data, isSuccess, isError, isLoading } =
-    useGetCharacterByNameQuery(query);
+    useGetCharactersQuery(query);
 
   if (isLoading) {
     // TODO skeletons would be great
