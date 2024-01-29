@@ -1,4 +1,4 @@
-.header {
+.user-header {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,12 +20,48 @@
   cursor: pointer;
 }
 
-.display-button-input {
-  /* display: none; */
-}
-
 .favorites {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, 140px);
+  justify-content: center;
   gap: 20px;
+}
+
+.history:has(> h2) {
+  text-align: center;
+}
+
+.history-entry {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #151515;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: lightgrey;
+  }
+}
+
+.history-clock {
+  width: 40px;
+}
+
+.remove-entry {
+  all: unset;
+}
+
+.remove-entry-icon {
+  width: 40px;
+}
+
+.history-query {
+  flex-grow: 1;
+}
+
+.history-entry-date,
+.history-query-text {
+  cursor: text;
 }

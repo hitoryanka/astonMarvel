@@ -41,7 +41,11 @@ const userSlice = createSlice({
     },
 
     addToHistory(state, { payload }) {
-      state.history.push(payload);
+      const newSearchEntry = {
+        id: Date.now(),
+        query: payload,
+      };
+      state.history.push(newSearchEntry);
     },
 
     removeFromHistory(state, { payload }) {

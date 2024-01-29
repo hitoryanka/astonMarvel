@@ -15,7 +15,7 @@ export const charactersApi = createApi({
     baseUrl: `http://gateway.marvel.com/v1/public/characters`,
   }),
   endpoints: builder => ({
-    getCharacters: builder.query<Character[], string | void>({
+    getCharacters: builder.query<Character[], string>({
       query: name => {
         if (name) {
           return `${SEARCH_PARAMS}&nameStartsWith=${name}`;

@@ -2,12 +2,16 @@ import s from './styles.module.css';
 import r, { useState } from 'react';
 import { useDebounce, useSearchQuery } from './hooks';
 import { SearchSuggest } from './SearchSuggest';
+import { useDispatch } from 'react-redux';
+import { addToHistory } from '../../../store/features/userSlice';
 
 export function Search() {
   // TODO custom hook for setting search param
   const [search, setSearch] = useState('');
   const debouncedValue = useDebounce(search, 1500);
   const [, setSearchQuery] = useSearchQuery();
+
+  const dispatch = useDispatch();
 
   const handleInputChange = ({
     target,
@@ -16,9 +20,12 @@ export function Search() {
   };
 
   const handleKeyDown = ({ target, key }: r.KeyboardEvent) => {
+    // BUG doesn't navigate to heroes
     const input = target as HTMLInputElement;
     if (key === 'Enter') {
       setSearchQuery(search);
+      dispatch(addToHistory(search));
+      input.blur();
       return;
     }
     if (key === 'Escape') {

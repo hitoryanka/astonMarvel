@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { SyntheticEvent, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
+  removeFromHistory,
   selectFavorites,
   selectHistory,
 } from '../../store/features/userSlice';
@@ -42,7 +43,9 @@ function HistoryList() {
   }
 
   return history.map(({ id, query }) => (
-    <HistoryEntry key={id}>{query}</HistoryEntry>
+    <HistoryEntry key={id} id={id}>
+      {query}
+    </HistoryEntry>
   ));
 }
 
@@ -63,16 +66,48 @@ function FavoritesList() {
 
 interface HistoryEntryProps {
   children: string;
+  id: number;
 }
 
-function HistoryEntry({ children }: HistoryEntryProps) {
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'numeric',
+  day: 'numeric',
+  hour: 'numeric',
+  minute: 'numeric',
+};
+
+function HistoryEntry({ children, id }: HistoryEntryProps) {
+  const date = new Date(id).toLocaleString('en-gb', dateOptions);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleDelete = (e: SyntheticEvent) => {
+    e.stopPropagation();
+    dispatch(removeFromHistory(id));
+  };
+
+  const handleNavigate = () => {
+    navigate(`/heroes?search=${children}`);
+  };
+
   return (
-    <article>
-      <img src="" alt="pretty-clock" />
-      {/* TODO make link to /heroes?search={children} */}
-      <h2>{children}</h2>
-      <button>
-        <img src="" alt="remove-entry" />
+    <article className={s['history-entry']} onClick={handleNavigate}>
+      <img
+        className={s['history-clock']}
+        src="src\assets\history.png"
+        alt="pretty-clock"
+      />
+      <h2 className={s['history-query']}>
+        <span className={s['history-query-text']}>{children}</span>
+      </h2>
+      <time className={s['history-entry-date']}>{date}</time>
+      <button className={s['remove-entry']} onClick={handleDelete}>
+        <img
+          className={s['remove-entry-icon']}
+          src="src\assets\history-remove.png"
+          alt="remove-entry"
+        />
       </button>
     </article>
   );

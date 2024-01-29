@@ -12,10 +12,12 @@ import { FavoriteCharacter } from '../../types';
 
 import favoriteActive from '../../assets/favorites-active.png';
 import favorite from '../../assets/favorites.png';
+import { useSearchQuery } from '../header/search/hooks';
 
 export function Heroes() {
+  const [searchQuery] = useSearchQuery();
   const { data, isLoading, isError, isSuccess } =
-    useGetCharactersQuery();
+    useGetCharactersQuery(searchQuery);
 
   if (isLoading) return <p>loading..</p>;
   if (isError) return <p>request failed</p>;
@@ -26,7 +28,11 @@ export function Heroes() {
       return <HeroCard key={id} id={id} cover={cover} name={name} />;
     });
 
-    return <main className={s.heroes}>{heroes}</main>;
+    return (
+      <main>
+        <section className={s.heroes}>{heroes}</section>
+      </main>
+    );
   }
   return <span>doing something else?</span>;
 }

@@ -9,7 +9,7 @@ export function UserHeader() {
   const { email } = useSelector(selectUser);
 
   return (
-    <header className={s.header}>
+    <header className={s['user-header']}>
       <img src="src\assets\profile-user.png" alt="your picture" />
       <h1 className={s['user-email']}>{email}</h1>
       <div className={s['display-buttons']}>
