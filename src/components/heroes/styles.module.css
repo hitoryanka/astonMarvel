@@ -8,6 +8,7 @@
 .hero-container {
   position: relative;
   /* background-color: #151515; */
+  cursor: pointer;
   width: 140px;
   color: #fff;
   height: 300px;
@@ -54,6 +55,7 @@
 
 .hero-name {
   position: sticky;
+  cursor: text;
   margin-left: 10px;
   font-family: 'Marvel', sans-serif;
 }

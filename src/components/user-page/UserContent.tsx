@@ -81,7 +81,6 @@ function HistoryEntry({ children, id }: HistoryEntryProps) {
   const date = new Date(id).toLocaleString('en-gb', dateOptions);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const handleDelete = (e: SyntheticEvent) => {
     e.stopPropagation();
     dispatch(removeFromHistory(id));

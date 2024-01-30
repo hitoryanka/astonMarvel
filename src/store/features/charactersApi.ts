@@ -2,12 +2,12 @@ import {
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-import { Character } from '../../types';
+import { Character, Comic, Series } from '../../types';
 
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 const HASH_KEY = import.meta.env.VITE_HASH_KEY;
 // REFACTOR there's a better way for sure
-const SEARCH_PARAMS = `?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH_KEY}&modifiedSince=10.10.2015&orderBy=-name`;
+const SEARCH_PARAMS = `?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH_KEY}`;
 
 export const charactersApi = createApi({
   reducerPath: 'heroes',
@@ -29,11 +29,22 @@ export const charactersApi = createApi({
       query: id => `/${id}${SEARCH_PARAMS}`,
       transformResponse: ({ data }) => data.results[0],
     }),
+
+    getCharacterComics: builder.query<Comic[], number>({
+      query: id => `/${id}/comics${SEARCH_PARAMS}`,
+      transformResponse: ({ data }) => data.results,
+    }),
+
+    getCharacterSeries: builder.query<Series[], number>({
+      query: id => `/${id}/series${SEARCH_PARAMS}`,
+      transformResponse: ({ data }) => data.results,
+    }),
   }),
 });
 
-export const { useGetCharactersQuery, useGetCharacterByIdQuery } =
-  charactersApi;
-
-// TODO create design for character cards
-// TODO fetch details about characters from URLs field
+export const {
+  useGetCharactersQuery,
+  useGetCharacterByIdQuery,
+  useGetCharacterComicsQuery,
+  useGetCharacterSeriesQuery,
+} = charactersApi;

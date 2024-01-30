@@ -1,12 +1,14 @@
 // TODO expand on this later
+type Thumbnail = {
+  path: string;
+  extension: string;
+};
+
 export type Character = {
   id: number;
   description: string;
   name: string;
-  thumbnail: {
-    extension: string;
-    path: string;
-  };
+  thumbnail: Thumbnail;
   comics: CharacterItems;
   series: CharacterItems;
   stories: CharacterItems;
@@ -39,3 +41,17 @@ type BasicResponse = {
 export interface CharacterResponse extends BasicResponse {
   results: Character[];
 }
+
+export type Series = {
+  id: number;
+  title: string;
+  description: string | null;
+  thumbnail: Thumbnail;
+};
+
+export type Comic = {
+  id: number;
+  title: string;
+  description: string | null;
+  thumbnail: Thumbnail;
+};

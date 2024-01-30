@@ -4,6 +4,7 @@ import { Signup } from './components/auth/SIgnup';
 import { Signin } from './components/auth/Signin';
 import { Header } from './components/header/Header';
 import { User } from './components/user-page/User';
+import { Hero } from './components/hero-page/Hero';
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,15 @@ export const router = createBrowserRouter([
       <>
         <Header />
         <Heroes />
+      </>
+    ),
+  },
+  {
+    path: '/heroes/:id',
+    element: (
+      <>
+        <Header />
+        <Hero />
       </>
     ),
   },
