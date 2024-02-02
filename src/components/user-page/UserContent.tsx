@@ -8,6 +8,8 @@ import {
 } from '../../store/features/userSlice';
 import { HeroCard } from '../heroes/Heroes';
 import s from './styles.module.css';
+import historyPNG from '../../assets/history.png';
+import historyRemovePNG from '../../assets/history-remove.png';
 
 export function UserContent() {
   // REFACTOR send as prop
@@ -94,7 +96,7 @@ function HistoryEntry({ children, id }: HistoryEntryProps) {
     <article className={s['history-entry']} onClick={handleNavigate}>
       <img
         className={s['history-clock']}
-        src="src\assets\history.png"
+        src={historyPNG}
         alt="pretty-clock"
       />
       <h2 className={s['history-query']}>
@@ -104,7 +106,7 @@ function HistoryEntry({ children, id }: HistoryEntryProps) {
       <button className={s['remove-entry']} onClick={handleDelete}>
         <img
           className={s['remove-entry-icon']}
-          src="src\assets\history-remove.png"
+          src={historyRemovePNG}
           alt="remove-entry"
         />
       </button>

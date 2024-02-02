@@ -2,7 +2,7 @@ import {
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-import { Character, Comic, Series } from '../../types';
+import { Character, Featured } from '../../types';
 
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 const HASH_KEY = import.meta.env.VITE_HASH_KEY;
@@ -25,18 +25,16 @@ export const charactersApi = createApi({
       transformResponse: ({ data }) => data.results,
     }),
 
-    getCharacterById: builder.query<Character, number>({
+    getCharacterById: builder.query<Character, number | string>({
       query: id => `/${id}${SEARCH_PARAMS}`,
       transformResponse: ({ data }) => data.results[0],
     }),
 
-    getCharacterComics: builder.query<Comic[], number>({
-      query: id => `/${id}/comics${SEARCH_PARAMS}`,
-      transformResponse: ({ data }) => data.results,
-    }),
-
-    getCharacterSeries: builder.query<Series[], number>({
-      query: id => `/${id}/series${SEARCH_PARAMS}`,
+    getCharacterFeatured: builder.query<
+      Featured[],
+      [number | string, 'comics' | 'series']
+    >({
+      query: ([id, type]) => `/${id}/${type}${SEARCH_PARAMS}`,
       transformResponse: ({ data }) => data.results,
     }),
   }),
@@ -45,6 +43,5 @@ export const charactersApi = createApi({
 export const {
   useGetCharactersQuery,
   useGetCharacterByIdQuery,
-  useGetCharacterComicsQuery,
-  useGetCharacterSeriesQuery,
+  useGetCharacterFeaturedQuery,
 } = charactersApi;

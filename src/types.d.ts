@@ -55,3 +55,5 @@ export type Comic = {
   description: string | null;
   thumbnail: Thumbnail;
 };
+
+export type Featured = Comic | Series;

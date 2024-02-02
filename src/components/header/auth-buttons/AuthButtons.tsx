@@ -3,6 +3,7 @@ import s from './styles.module.css';
 import { useSelector } from 'react-redux';
 import { selectIsLogged } from '../../../store/features/authSlice';
 import { ReactElement } from 'react';
+import userPNG from '../../../assets/profile-user.png';
 
 export function AuthButtons() {
   const isLogged = useSelector(selectIsLogged);
@@ -15,7 +16,7 @@ export function AuthButtons() {
         <NavLink to={'/user'} className={s['profile-pic-container']}>
           <img
             className={s['profile-pic']}
-            src="src\assets\profile-user.png"
+            src={userPNG}
             alt="your profile"
           />
         </NavLink>

@@ -4,13 +4,14 @@ import { SetURLSearchParams } from 'react-router-dom';
 import s from './styles.module.css';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/features/userSlice';
+import userPNG from '../../assets/profile-user.png';
 
 export function UserHeader() {
   const { email } = useSelector(selectUser);
 
   return (
     <header className={s['user-header']}>
-      <img src="src\assets\profile-user.png" alt="your picture" />
+      <img src={userPNG} alt="your picture" />
       <h1 className={s['user-email']}>{email}</h1>
       <div className={s['display-buttons']}>
         <ViewButton>favorites</ViewButton>

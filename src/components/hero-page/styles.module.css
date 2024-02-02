@@ -1,0 +1,96 @@
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  border-radius: 50%;
+}
+
+.hero-info {
+  display: grid;
+  place-items: center;
+  font-family: 'Marvel', sans-serif;
+}
+
+.hero-name {
+  font-size: 48px;
+}
+
+.hero-description {
+  font-size: 24px;
+}
+
+.featured {
+  max-width: 1100px;
+  width: 100%;
+}
+
+.featured-wrapper {
+  margin-bottom: 20px;
+}
+
+.featured-list-header {
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #e62429;
+  color: #fff;
+  padding: 5px;
+  margin: unset;
+}
+
+.toggle-icon {
+  transform: rotate(0deg);
+  width: 32px;
+  margin-right: 20px;
+
+  transition: transform 0.3s;
+}
+
+#toggle-list {
+  display: none;
+}
+
+#toggle-list:checked + .toggle-icon {
+  transform: rotate(90deg);
+}
+
+.featured-list {
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 140px);
+  justify-content: center;
+  gap: 10px;
+
+  overflow: hidden;
+  max-height: 2000px;
+
+  background-color: #151515;
+
+  transition: max-height 0.3s ease-in-out;
+
+  &.collapsed {
+    max-height: 0px;
+  }
+}
+
+.list-item {
+  margin: 10px 0px;
+  background-color: #2c2a2a;
+  color: #fff;
+}
+
+.list-item-thumbnail {
+  width: 140px;
+}
+
+.list-item-title {
+  padding: 5px;
+}

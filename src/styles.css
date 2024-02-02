@@ -1,3 +1,9 @@
+ul,
+ol,
+li {
+  all: unset;
+}
+
 #root {
   display: flex;
   flex-direction: column;
