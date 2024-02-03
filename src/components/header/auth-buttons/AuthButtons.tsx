@@ -13,7 +13,11 @@ export function AuthButtons() {
   if (isLogged) {
     content = (
       <>
-        <NavLink to={'/user'} className={s['profile-pic-container']}>
+        <NavLink
+          to={'/user'}
+          title="your profile page"
+          className={s['profile-pic-container']}
+        >
           <img
             className={s['profile-pic']}
             src={userPNG}

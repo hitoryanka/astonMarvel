@@ -42,18 +42,15 @@ export interface CharacterResponse extends BasicResponse {
   results: Character[];
 }
 
-export type Series = {
+export type Featured = {
   id: number;
   title: string;
   description: string | null;
   thumbnail: Thumbnail;
+  urls: FeaturedURL[];
 };
 
-export type Comic = {
-  id: number;
-  title: string;
-  description: string | null;
-  thumbnail: Thumbnail;
+type FeaturedURL = {
+  type: string;
+  url: string;
 };
-
-export type Featured = Comic | Series;

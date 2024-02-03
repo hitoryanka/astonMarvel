@@ -1,6 +1,7 @@
 ul,
 ol,
-li {
+li,
+a {
   all: unset;
 }
 
