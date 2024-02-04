@@ -18,6 +18,26 @@
 .display-button {
   font-size: 24px;
   cursor: pointer;
+  padding: 10px;
+  border-radius: 3px;
+
+  &:hover {
+    color: #fff;
+    background-color: rgb(73, 66, 66);
+  }
+}
+
+.display-button-input {
+  display: none;
+
+  &:checked + .display-button {
+    color: #fff;
+    background-color: #151515;
+
+    &:hover {
+      background-color: rgb(73, 66, 66);
+    }
+  }
 }
 
 .favorites {

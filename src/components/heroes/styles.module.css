@@ -19,7 +19,7 @@
   flex-direction: column;
   &:hover {
     .hero-thumbnail {
-      scale: 1.1;
+      transform: scale(1.1);
     }
 
     .name-wrapper-curtain {
@@ -29,8 +29,8 @@
 }
 
 .hero-thumbnail {
-  scale: 1;
-  transition: scale 0.3s;
+  transform: scale(1);
+  transition: transform 0.3s;
 }
 
 .name-wrapper {

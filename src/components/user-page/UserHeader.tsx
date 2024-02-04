@@ -1,10 +1,9 @@
-import { SyntheticEvent, useContext } from 'react';
-import { Params } from './User';
-import { SetURLSearchParams } from 'react-router-dom';
+import { SyntheticEvent } from 'react';
 import s from './styles.module.css';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/features/userSlice';
 import userPNG from '../../assets/profile-user.png';
+import { useViewParam } from './lib';
 
 export function UserHeader() {
   const { email } = useSelector(selectUser);
@@ -26,27 +25,25 @@ interface ViewButtonProps {
 }
 
 export function ViewButton({ children }: ViewButtonProps) {
-  const [params, setParams] = useContext(Params) as [
-    URLSearchParams,
-    SetURLSearchParams,
-  ];
-
+  const [view, setView] = useViewParam();
   const handleView = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
-    setParams(`?view=${target.id}`);
+    setView(target.id);
   };
 
   return (
-    <label className={s['display-button']} htmlFor={children}>
-      {children}
+    <>
       <input
         onClick={handleView}
         className={s['display-button-input']}
         type="radio"
         id={children}
         name="user-buttons"
-        defaultChecked={params.get('view') === children}
+        checked={view === children}
       />
-    </label>
+      <label className={s['display-button']} htmlFor={children}>
+        {children}
+      </label>
+    </>
   );
 }

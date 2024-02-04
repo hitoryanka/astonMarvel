@@ -1,6 +1,6 @@
 import { SyntheticEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   removeFromHistory,
   selectFavorites,
@@ -10,17 +10,17 @@ import { HeroCard } from '../heroes/Heroes';
 import s from './styles.module.css';
 import historyPNG from '../../assets/history.png';
 import historyRemovePNG from '../../assets/history-remove.png';
+import { useViewParam } from './lib';
 
 export function UserContent() {
   // REFACTOR send as prop
-  const [searchParams, setSearchParams] = useSearchParams();
-  const view = searchParams.get('view');
+  const [view, setView] = useViewParam();
 
   useEffect(() => {
     if (view !== 'favorites' && view !== 'history') {
-      setSearchParams('?view=favorites');
+      setView('favorites');
     }
-  }, [searchParams]);
+  }, [view]);
 
   if (view === 'favorites') {
     return (
