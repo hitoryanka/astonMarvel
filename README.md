@@ -19,16 +19,16 @@
    - [ ] - **Кнопки не должны “мерцать”.**
 2. Переиспользуемые компконенты
 
-   - [x] Кнопка добавить, удалить из избранного
-   - [x] Панель поиска
-   - [x] Карточка с единицей информации
+   - [x] [Кнопка добавить, удалить из избранного](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
+   - [x] [Панель поиска](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/Search.tsx)
+   - [x] [Карточка с единицей информации](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
 
 3. Страницы
    - [x] [Главная страница](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
-   - [x] Страница с единицей информации
-   - [x] Страница поиска
-   - [x] Страница истории
-   - [x] Страница избранное
+   - [x] [Страница с единицей информации](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/hero-page/Hero.tsx)
+   - [x] [Страница поиска](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/Search.tsx)
+   - [x] [Страница истории](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/user-page/UserContent.tsx)
+   - [x] [Страница избранное](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/user-page/UserContent.tsx)
    - [x] [Страница регистрации](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
    - [x] [Страница входа пользователя](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/Signin.tsx)
 
@@ -42,18 +42,18 @@
 - [x] [Реализована хотя бы одна **форма**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
 - [ ] Есть применение **Контекст API**
 - [ ] Есть применение **предохранителя**
-- [x] Есть хотя бы один **кастомный хук**
+- [x] [Есть хотя бы один **кастомный хук**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
 - [ ] Хотя бы несколько компонентов используют **PropTypes**
-- [x] Поиск не должен триггерить много запросов к серверу (**debounce**)
+- [x] [Поиск не должен триггерить много запросов к серверу (**debounce**)](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
 - [ ] Есть применение **lazy + Suspense**
 
 **Redux**
 
-- [x] Используем **Modern Redux with Redux Toolkit**
-- [x] Используем **слайсы**
+- [x] [Используем **Modern Redux with Redux Toolkit**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/store.ts)
+- [x] [Используем **слайсы**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/userSlice.ts)
 - [ ] Есть хотя бы одна **кастомная мидлвара**
-- [x] Используется **RTK Query**
-- [x] Используется **Transforming Responses**
+- [x] [Используется **RTK Query**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/charactersApi.ts)
+- [x] [Используется **Transforming Responses**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/charactersApi.ts)
 
 <h3>Необязательные</h3>
 
@@ -61,7 +61,7 @@
 - [ ] Подключен **storybook** и созданы два, три сториса с knobs, которые показывают разные состояния компонента
 - [ ] Использование **Firebase** для учетных записей пользователей и их Избранного и Истории поиска.
 - [ ] **Низкая связанность клиентского кода**, использующего апи кода, работающего с внешним стором.
-- [x] Настроен **CI/CD**.
+- [x] [Настроен **CI/CD**.](https://github.com/hitoryanka/astonMarvel/blob/main/.github/workflows/integrate.yml)
 - [ ] Реализована **виртуализация списков**
 - [ ] Используются **мемоизированные селекторы**
 - [ ] Используется **нормализованная структура стейта**
