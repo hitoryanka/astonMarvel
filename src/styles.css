@@ -1,7 +1,23 @@
+ul,
+ol,
+li,
+a {
+  all: unset;
+}
+
 #root {
   display: flex;
   flex-direction: column;
   gap: 40px;
   justify-content: center;
   align-items: center;
+
+  & > * {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+
+  main {
+    max-width: 1100px;
+    width: 75%;
+  }
 }

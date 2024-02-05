@@ -3,8 +3,23 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: gray;
-  padding: 0 20px;
-  width: 1280px;
-  height: 100px;
+  background-color: #151515;
+  max-width: 1100px;
+  width: 75%;
+  height: 50px;
+}
+
+.logo {
+  letter-spacing: -4px;
+  font-family: 'Roboto Condensed', sans-serif;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #e62429;
+  height: 50px;
+
+  font-size: 32px;
+  padding: 5px;
+  text-decoration: none;
+  color: #fff;
 }
