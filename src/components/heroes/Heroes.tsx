@@ -77,17 +77,31 @@ export function HeroCard(props: heroCardProps) {
       <div className={s['name-wrapper']}>
         <span className={s['name-wrapper-curtain']}></span>
         <h2 className={s['hero-name']}>{name}</h2>
-        <button
-          className={s['favorite-check']}
-          onClick={toggleFavorite}
-        >
-          <img
-            src={isFavorite ? favoriteActive : favorite}
-            alt="click to save"
-          />
-        </button>
+        <FavoriteButton
+          isFavorite={isFavorite}
+          handleClick={toggleFavorite}
+        />
       </div>
     </article>
+  );
+}
+
+interface FavoriteButtonProps {
+  isFavorite: boolean;
+  handleClick: (e: SyntheticEvent) => void;
+}
+
+function FavoriteButton({
+  isFavorite,
+  handleClick,
+}: FavoriteButtonProps) {
+  return (
+    <button className={s['favorite-check']} onClick={handleClick}>
+      <img
+        src={isFavorite ? favoriteActive : favorite}
+        alt="click to save"
+      />
+    </button>
   );
 }
 

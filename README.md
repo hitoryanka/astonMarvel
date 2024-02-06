@@ -45,7 +45,7 @@
 - [x] [Есть хотя бы один **кастомный хук**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
 - [ ] Хотя бы несколько компонентов используют **PropTypes**
 - [x] [Поиск не должен триггерить много запросов к серверу (**debounce**)](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
-- [ ] Есть применение **lazy + Suspense**
+- [x] Есть применение **lazy + Suspense**
 
 **Redux**
 
