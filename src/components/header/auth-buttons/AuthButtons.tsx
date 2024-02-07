@@ -58,7 +58,6 @@ function Profile() {
   const ref = useRef<HTMLUListElement>(null);
 
   const handleShow = () => {
-    console.log(ref.current);
     if (!ref.current) {
       return;
     }

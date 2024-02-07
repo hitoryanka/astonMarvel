@@ -54,3 +54,5 @@ type FeaturedURL = {
   type: string;
   url: string;
 };
+
+type Action = {};

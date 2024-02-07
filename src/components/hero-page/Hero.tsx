@@ -22,7 +22,6 @@ export function Hero() {
     // [x] style displayed data
     // [ ] add working links to outer resources (if any)
     // [ ] add logic
-    console.log(data);
     const thumbnail = `${data.thumbnail.path}/standard_xlarge.${data.thumbnail.extension}`;
     return (
       <main className={s['hero-wrapper']}>

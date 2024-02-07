@@ -10,6 +10,7 @@
 }
 
 .logo {
+  cursor: pointer;
   letter-spacing: -4px;
   font-family: 'Roboto Condensed', sans-serif;
   display: flex;

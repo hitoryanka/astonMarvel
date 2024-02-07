@@ -37,7 +37,7 @@
 **React**
 
 - [x] [**Пишем функциональные компоненты c хуками** в приоритете над классовыми.](https://github.com/hitoryanka/astonMarvel/tree/main/src/components)
-- [ ] Есть разделение на **умные и глупые компоненты**
+- [x] Есть разделение на **умные и глупые компоненты**
 - [x] [Есть **рендеринг списков**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
 - [x] [Реализована хотя бы одна **форма**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
 - [ ] Есть применение **Контекст API**

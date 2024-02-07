@@ -21,10 +21,3 @@ a {
     width: 75%;
   }
 }
-
-::-webkit-scrollbar {
-  /* position: absolute; */
-  scrollbar-color: #e62429;
-  /* scrollbar-width: 100px; */
-  /* z-index: 10; */
-}
