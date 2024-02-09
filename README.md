@@ -51,7 +51,7 @@
 
 - [x] [Используем **Modern Redux with Redux Toolkit**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/store.ts)
 - [x] [Используем **слайсы**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/userSlice.ts)
-- [ ] Есть хотя бы одна **кастомная мидлвара**
+- [x] Есть хотя бы одна **кастомная мидлвара**
 - [x] [Используется **RTK Query**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/charactersApi.ts)
 - [x] [Используется **Transforming Responses**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/charactersApi.ts)
 

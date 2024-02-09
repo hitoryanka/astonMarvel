@@ -1,4 +1,7 @@
-import { useGetCharactersQuery } from '../../store/features/charactersApi';
+import {
+  ITEMS_LIMIT,
+  useGetCharactersQuery,
+} from '../../store/features/charactersApi';
 import { useNavigate } from 'react-router-dom';
 import s from './styles.module.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,34 +10,72 @@ import {
   removeFromFavorites,
   selectFavorites,
 } from '../../store/features/userSlice';
-import { SyntheticEvent, useState } from 'react';
-import { FavoriteCharacter } from '../../types';
+import { SyntheticEvent, useEffect, useRef, useState } from 'react';
+import { Character, FavoriteCharacter } from '../../types';
 
 import favoriteActive from '../../assets/favorites-active.png';
 import favorite from '../../assets/favorites.png';
 import { useSearchQuery } from '../header/search/hooks';
 
+type HeroesRef = {
+  heroes: Character[];
+  isSkeletons: boolean;
+};
 export function Heroes() {
   const [searchQuery] = useSearchQuery();
-  const { data, isLoading, isError, isSuccess } =
-    useGetCharactersQuery(searchQuery);
+  const [page, setPage] = useState(0);
+  const { heroes, isSkeletons } = useRef<HeroesRef>({
+    heroes: [],
+    isSkeletons: false,
+  }).current;
+  const { data, isLoading, isFetching, isError, isSuccess } =
+    useGetCharactersQuery([searchQuery, page]);
 
-  if (isLoading) return <p>loading..</p>;
+  const handleScroll = () => {
+    const { scrollHeight, clientHeight, scrollTop } =
+      document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      console.log('reached bottom');
+      setPage(prev => prev + 1);
+      console.log(page);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  if (isLoading)
+    return <p>loading for the first time NEED SKELETONS!!!</p>;
+
+  if (isFetching) {
+    return <p>display data and skeletons</p>;
+  }
+
   if (isError) return <p>request failed</p>;
 
   if (isSuccess) {
-    const heroes = data.map(({ id, thumbnail, name }) => {
+    console.log(data);
+    const itemsCnt = (page + 1) * ITEMS_LIMIT;
+    if (heroes.length < itemsCnt) {
+      heroes.push(...data);
+    }
+
+    const list = heroes.map(({ id, thumbnail, name }) => {
       const cover = `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`;
       return <HeroCard key={id} id={id} cover={cover} name={name} />;
     });
 
     return (
       <main>
-        <section className={s.heroes}>{heroes}</section>
+        <section className={s.heroes}>{list}</section>
       </main>
     );
   }
-  return <span>doing something else?</span>;
 }
 
 interface heroCardProps {

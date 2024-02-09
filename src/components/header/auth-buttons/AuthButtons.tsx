@@ -5,7 +5,7 @@ import {
   logout,
   selectIsLogged,
 } from '../../../store/features/authSlice';
-import { ReactElement, useRef } from 'react';
+import { ReactElement, forwardRef, useRef } from 'react';
 import userPNG from '../../../assets/profile-user.png';
 
 export function AuthButtons() {
@@ -35,12 +35,12 @@ export function AuthButtons() {
       <>
         <button className={s['auth-link-wrapper']}>
           <NavLink className={s['auth-link']} to="/auth/signup">
-            signup
+            sign up
           </NavLink>
         </button>
         <button className={s['auth-link-wrapper']}>
           <NavLink className={s['auth-link']} to="/auth/signin">
-            signin
+            sign in
           </NavLink>
         </button>
       </>
@@ -51,10 +51,6 @@ export function AuthButtons() {
 }
 
 function Profile() {
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logout());
-  };
   const ref = useRef<HTMLUListElement>(null);
 
   const handleShow = () => {
@@ -72,6 +68,18 @@ function Profile() {
         src={userPNG}
         alt="your profile picture"
       />
+      <ProfileDropMenu ref={ref} />
+    </div>
+  );
+}
+
+const ProfileDropMenu = forwardRef<HTMLUListElement>(
+  function ProfileDropMenu(_, ref) {
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+      dispatch(logout());
+    };
+    return (
       <ul ref={ref} className={s['drop-menu']}>
         <li className={s['drop-menu-item']}>
           <NavLink to="/user">My profile</NavLink>
@@ -80,6 +88,6 @@ function Profile() {
           Sign out
         </li>
       </ul>
-    </div>
-  );
-}
+    );
+  },
+);

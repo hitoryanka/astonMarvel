@@ -10,18 +10,19 @@
     border: none;
     height: 50px;
     background-color: #151515;
-
-    .auth-link {
-      text-decoration: none;
-      font-size: 24px;
-      font-family: 'Marvel', sans-serif;
-      color: #fff;
-    }
+    cursor: pointer;
 
     &:hover {
       background-color: grey;
     }
   }
+}
+
+.auth-link {
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Marvel', sans-serif;
+  color: #fff;
 }
 
 .profile-wrapper {

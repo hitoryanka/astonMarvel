@@ -8,6 +8,7 @@ const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 const HASH_KEY = import.meta.env.VITE_HASH_KEY;
 // REFACTOR there's a better way for sure
 const SEARCH_PARAMS = `?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH_KEY}`;
+export const ITEMS_LIMIT = 25;
 
 export const charactersApi = createApi({
   reducerPath: 'heroes',
@@ -15,12 +16,13 @@ export const charactersApi = createApi({
     baseUrl: `http://gateway.marvel.com/v1/public/characters`,
   }),
   endpoints: builder => ({
-    getCharacters: builder.query<Character[], string>({
-      query: name => {
+    getCharacters: builder.query<Character[], [string, number]>({
+      query: ([name, pageNum]) => {
+        const page = `&limit=${ITEMS_LIMIT}&offset=${pageNum * ITEMS_LIMIT}`;
         if (name) {
-          return `${SEARCH_PARAMS}&nameStartsWith=${name}`;
+          return `${SEARCH_PARAMS}&nameStartsWith=${name}${page}`;
         }
-        return `${SEARCH_PARAMS}`;
+        return `${SEARCH_PARAMS}${page}`;
       },
       transformResponse: ({ data }) => data.results,
     }),
