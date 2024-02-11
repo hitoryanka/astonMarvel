@@ -43,6 +43,10 @@ export function Heroes() {
   };
 
   useEffect(() => {
+    heroesRef.heroes = [];
+  }, [searchQuery]);
+
+  useEffect(() => {
     document.addEventListener('scroll', handleScroll);
     return () => {
       document.removeEventListener('scroll', handleScroll);
