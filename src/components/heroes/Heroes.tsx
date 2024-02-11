@@ -19,14 +19,14 @@ import { useSearchQuery } from '../header/search/hooks';
 
 type HeroesRef = {
   heroes: Character[];
-  isSkeletons: boolean;
+  isLoader: boolean;
 };
 export function Heroes() {
   const [searchQuery] = useSearchQuery();
   const [page, setPage] = useState(0);
-  const { heroes, isSkeletons } = useRef<HeroesRef>({
+  const heroesRef = useRef<HeroesRef>({
     heroes: [],
-    isSkeletons: false,
+    isLoader: false,
   }).current;
   const { data, isLoading, isFetching, isError, isSuccess } =
     useGetCharactersQuery([searchQuery, page]);
@@ -34,48 +34,67 @@ export function Heroes() {
   const handleScroll = () => {
     const { scrollHeight, clientHeight, scrollTop } =
       document.documentElement;
+    if (heroesRef.isLoader) {
+      return;
+    }
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-      console.log('reached bottom');
       setPage(prev => prev + 1);
-      console.log(page);
     }
   };
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
-
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  if (isLoading)
-    return <p>loading for the first time NEED SKELETONS!!!</p>;
-
-  if (isFetching) {
-    return <p>display data and skeletons</p>;
+  if (isLoading) {
+    heroesRef.isLoader = true;
+    return <Loader />;
   }
 
-  if (isError) return <p>request failed</p>;
-
-  if (isSuccess) {
-    console.log(data);
-    const itemsCnt = (page + 1) * ITEMS_LIMIT;
-    if (heroes.length < itemsCnt) {
-      heroes.push(...data);
-    }
-
-    const list = heroes.map(({ id, thumbnail, name }) => {
-      const cover = `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`;
-      return <HeroCard key={id} id={id} cover={cover} name={name} />;
-    });
-
+  if (isFetching) {
+    heroesRef.isLoader = true;
     return (
       <main>
-        <section className={s.heroes}>{list}</section>
+        <HeroesList>{heroesRef.heroes}</HeroesList>
+        <Loader />
       </main>
     );
   }
+
+  if (isSuccess) {
+    heroesRef.isLoader = false;
+    const itemsCnt = (page + 1) * ITEMS_LIMIT;
+    if (heroesRef.heroes.length < itemsCnt) {
+      heroesRef.heroes.push(...data);
+    }
+    return (
+      <main>
+        <HeroesList>{heroesRef.heroes}</HeroesList>
+      </main>
+    );
+  }
+
+  if (isError) return <p>request failed</p>;
+}
+
+interface HeroesListProps {
+  children: Character[];
+}
+
+function HeroesList({ children }: HeroesListProps) {
+  const heroes = children.map(({ id, thumbnail, name }) => {
+    const cover = `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`;
+    return <HeroCard key={id} id={id} cover={cover} name={name} />;
+  });
+
+  return <section className={s.heroes}>{heroes}</section>;
+}
+
+function Loader() {
+  return <div>Loading...</div>;
 }
 
 interface heroCardProps {
