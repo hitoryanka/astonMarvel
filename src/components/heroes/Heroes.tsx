@@ -1,45 +1,42 @@
-import {
-  ITEMS_LIMIT,
-  useGetCharactersQuery,
-} from '../../store/features/charactersApi';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useGetCharactersQuery } from '../../store/features/charactersApi';
+import { useEffect, useRef, useState } from 'react';
 import { Character } from '../../types';
 import { useSearchQuery } from '../header/search/hooks';
 import { HeroesList, Loader } from './components/HeroesList';
 export function Heroes() {
   const [searchQuery] = useSearchQuery();
-  const [page, setPage] = useState(0);
+  const [offset, setOffset] = useState(0);
   const heroesSectionRef = useRef<HTMLElement>(null);
   const [heroes, setHeroes] = useState<Character[]>([]);
   const { data, isLoading, isFetching, isError, isSuccess } =
-    useGetCharactersQuery([searchQuery, page]);
+    useGetCharactersQuery([searchQuery, offset]);
 
   const handleScroll = () => {
-    const heroesSection = heroesSectionRef.current as HTMLElement;
-    const { height: heroesHeight } =
-      window.getComputedStyle(heroesSection);
-    console.log(heroesHeight);
+    // const heroesSection = heroesSectionRef.current as HTMLElement;
+    // const { height: heroesHeight } =
+    //   window.getComputedStyle(heroesSection);
+    // console.log(heroesHeight);
     const { scrollHeight, clientHeight, scrollTop } =
       document.documentElement;
-    if (isLoading) {
+    console.log(isSuccess, isFetching);
+    if (!isSuccess) {
       return;
     }
     if (scrollTop + clientHeight >= scrollHeight - 100) {
-      setPage(prev => prev + 1);
+      setOffset(prev => prev + data.length);
     }
   };
-
-  useLayoutEffect(() => {
-    console.log('clearing heroes');
-    setHeroes([]);
-  }, [searchQuery]);
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
-  }, [data]);
+  }, [isFetching]);
+
+  useEffect(() => {
+    setHeroes([]);
+  }, [searchQuery]);
 
   // useEffect(() => {
   //   if (data?.length === 0) {
@@ -67,11 +64,10 @@ export function Heroes() {
     );
   }
   if (isSuccess) {
-    const itemsCnt = (page + 1) * ITEMS_LIMIT;
+    const itemsCnt = offset + data.length;
     if (heroes.length < itemsCnt) {
-      heroes.push(...data);
+      setHeroes([...heroes, ...data]);
     }
-    console.log('Im successful: ', heroes);
     return (
       <main id="heroes-wrapper">
         <div id="margin-container-top"></div>

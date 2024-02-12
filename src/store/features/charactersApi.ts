@@ -17,8 +17,8 @@ export const charactersApi = createApi({
   }),
   endpoints: builder => ({
     getCharacters: builder.query<Character[], [string, number]>({
-      query: ([name, pageNum]) => {
-        const page = `&limit=${ITEMS_LIMIT}&offset=${pageNum * ITEMS_LIMIT}`;
+      query: ([name, offset]) => {
+        const page = `&limit=${ITEMS_LIMIT}&offset=${offset}`;
         if (name) {
           return `${SEARCH_PARAMS}&nameStartsWith=${name}${page}`;
         }

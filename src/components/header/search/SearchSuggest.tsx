@@ -29,7 +29,14 @@ export const SearchSuggest = memo(function SearchSuggest(p: Props) {
       .slice(0, 5)
       .map(({ id, name, thumbnail: { extension, path } }) => {
         const thumbnail = `${path}/standard_small.${extension}`;
-        return <Suggest key={id} thumbnail={thumbnail} name={name} />;
+        return (
+          <Suggest
+            key={id}
+            thumbnail={thumbnail}
+            name={name}
+            id={id}
+          />
+        );
       });
     return <ul className={s['suggestion-list']}>{heroes}</ul>;
   }
@@ -38,17 +45,18 @@ export const SearchSuggest = memo(function SearchSuggest(p: Props) {
 interface SuggestProps {
   thumbnail: string;
   name: string;
+  id: number;
 }
 
-function Suggest({ thumbnail, name }: SuggestProps) {
+function Suggest({ thumbnail, name, id }: SuggestProps) {
   return (
-    <li className={s['suggestion-item']}>
+    <a href={`./heroes/${id}`} className={s['suggestion-item']}>
       <img
         src={thumbnail}
         className={s['hero-thumbnail']}
         alt="hero-portrait"
       />
       <p className={s['hero-name']}>{name}</p>
-    </li>
+    </a>
   );
 }
