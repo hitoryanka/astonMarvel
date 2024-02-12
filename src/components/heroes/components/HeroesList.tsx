@@ -13,7 +13,7 @@ export const HeroesList = forwardRef<HTMLElement, HeroesListProps>(
       const cover = `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`;
       return <HeroCard key={id} id={id} cover={cover} name={name} />;
     });
-
+    console.log(heroes);
     return (
       <section ref={ref} className={s.heroes}>
         {heroes}
