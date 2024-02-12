@@ -14,6 +14,7 @@ type HeroesRef = {
 export function Heroes() {
   const [searchQuery] = useSearchQuery();
   const [page, setPage] = useState(0);
+  const heroesSectionRef = useRef<HTMLElement>(null);
   const heroesRef = useRef<HeroesRef>({
     heroes: [],
     isLoader: false,
@@ -22,6 +23,10 @@ export function Heroes() {
     useGetCharactersQuery([searchQuery, page]);
 
   const handleScroll = () => {
+    const heroesSection = heroesSectionRef.current as HTMLElement;
+    const { height: heroesHeight } =
+      window.getComputedStyle(heroesSection);
+    console.log(heroesHeight);
     const { scrollHeight, clientHeight, scrollTop } =
       document.documentElement;
     if (heroesRef.isLoader) {
@@ -46,7 +51,7 @@ export function Heroes() {
   if (isLoading) {
     heroesRef.isLoader = true;
     return (
-      <main>
+      <main id="heroes-wrapper">
         <Loader />
       </main>
     );
@@ -54,8 +59,12 @@ export function Heroes() {
   if (isFetching) {
     heroesRef.isLoader = true;
     return (
-      <main>
-        <HeroesList>{heroesRef.heroes}</HeroesList>
+      <main id="heroes-wrapper">
+        <div id="margin-container-top"></div>
+        <HeroesList ref={heroesSectionRef}>
+          {heroesRef.heroes}
+        </HeroesList>
+        <div id="margin-container-bottom"></div>
         <Loader />
       </main>
     );
@@ -67,8 +76,12 @@ export function Heroes() {
       heroesRef.heroes.push(...data);
     }
     return (
-      <main>
-        <HeroesList>{heroesRef.heroes}</HeroesList>
+      <main id="heroes-wrapper">
+        <div id="margin-container-top"></div>
+        <HeroesList ref={heroesSectionRef}>
+          {heroesRef.heroes}
+        </HeroesList>
+        <div id="margin-container-bottom"></div>
       </main>
     );
   }
