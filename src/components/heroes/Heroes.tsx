@@ -2,20 +2,10 @@ import {
   ITEMS_LIMIT,
   useGetCharactersQuery,
 } from '../../store/features/charactersApi';
-import { useNavigate } from 'react-router-dom';
-import s from './styles.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addToFavorites,
-  removeFromFavorites,
-  selectFavorites,
-} from '../../store/features/userSlice';
-import { SyntheticEvent, useEffect, useRef, useState } from 'react';
-import { Character, FavoriteCharacter } from '../../types';
-
-import favoriteActive from '../../assets/favorites-active.png';
-import favorite from '../../assets/favorites.png';
+import { useEffect, useRef, useState } from 'react';
+import { Character } from '../../types';
 import { useSearchQuery } from '../header/search/hooks';
+import { HeroesList, Loader } from './components/HeroesList';
 
 type HeroesRef = {
   heroes: Character[];
@@ -55,9 +45,12 @@ export function Heroes() {
 
   if (isLoading) {
     heroesRef.isLoader = true;
-    return <Loader />;
+    return (
+      <main>
+        <Loader />
+      </main>
+    );
   }
-
   if (isFetching) {
     heroesRef.isLoader = true;
     return (
@@ -67,7 +60,6 @@ export function Heroes() {
       </main>
     );
   }
-
   if (isSuccess) {
     heroesRef.isLoader = false;
     const itemsCnt = (page + 1) * ITEMS_LIMIT;
@@ -80,95 +72,5 @@ export function Heroes() {
       </main>
     );
   }
-
   if (isError) return <p>request failed</p>;
-}
-
-interface HeroesListProps {
-  children: Character[];
-}
-
-function HeroesList({ children }: HeroesListProps) {
-  const heroes = children.map(({ id, thumbnail, name }) => {
-    const cover = `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`;
-    return <HeroCard key={id} id={id} cover={cover} name={name} />;
-  });
-
-  return <section className={s.heroes}>{heroes}</section>;
-}
-
-function Loader() {
-  return <div>Loading...</div>;
-}
-
-interface heroCardProps {
-  id: number;
-  cover: string;
-  name: string;
-}
-
-export function HeroCard(props: heroCardProps) {
-  const { id, cover, name } = props;
-  const navigate = useNavigate();
-  const favorites = useSelector(selectFavorites);
-  const [isFavorite, setIsFavorite] = useState(
-    checkIsFavorite(id, favorites),
-  );
-  const dispatch = useDispatch();
-
-  const handleNavigate = () => {
-    navigate(`/heroes/${id}`);
-  };
-
-  const toggleFavorite = (e: SyntheticEvent) => {
-    e.stopPropagation();
-    setIsFavorite(prev => !prev);
-    if (!isFavorite) {
-      dispatch(addToFavorites({ id, cover, name }));
-      return;
-    }
-
-    dispatch(removeFromFavorites(id));
-  };
-
-  return (
-    <article className={s['hero-container']} onClick={handleNavigate}>
-      <img
-        className={s['hero-thumbnail']}
-        src={cover}
-        alt={name + ' thumbnail'}
-      />
-      <div className={s['name-wrapper']}>
-        <span className={s['name-wrapper-curtain']}></span>
-        <h2 className={s['hero-name']}>{name}</h2>
-        <FavoriteButton
-          isFavorite={isFavorite}
-          handleClick={toggleFavorite}
-        />
-      </div>
-    </article>
-  );
-}
-
-interface FavoriteButtonProps {
-  isFavorite: boolean;
-  handleClick: (e: SyntheticEvent) => void;
-}
-
-function FavoriteButton({
-  isFavorite,
-  handleClick,
-}: FavoriteButtonProps) {
-  return (
-    <button className={s['favorite-check']} onClick={handleClick}>
-      <img
-        src={isFavorite ? favoriteActive : favorite}
-        alt="click to save"
-      />
-    </button>
-  );
-}
-
-function checkIsFavorite(id: number, favorites: FavoriteCharacter[]) {
-  return Boolean(favorites.find(hero => hero.id === id));
 }
