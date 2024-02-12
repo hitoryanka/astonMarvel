@@ -36,6 +36,7 @@ export function Heroes() {
 
   useEffect(() => {
     setHeroes([]);
+    setOffset(0);
   }, [searchQuery]);
 
   // useEffect(() => {
