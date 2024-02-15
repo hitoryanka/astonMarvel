@@ -12,7 +12,7 @@ const SEARCH_PARAMS = `?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH_KEY}`;
 export const charactersApi = createApi({
   reducerPath: 'heroes',
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://gateway.marvel.com/v1/public/characters`,
+    baseUrl: `https://gateway.marvel.com/v1/public/characters`,
   }),
   endpoints: builder => ({
     getCharacters: builder.query<Character[], string>({
