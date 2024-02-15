@@ -13,7 +13,7 @@ export const ITEMS_LIMIT = 25;
 export const charactersApi = createApi({
   reducerPath: 'heroes',
   baseQuery: fetchBaseQuery({
-    baseUrl: `http://gateway.marvel.com/v1/public/characters`,
+    baseUrl: `https://gateway.marvel.com/v1/public/characters`,
   }),
   endpoints: builder => ({
     getCharacters: builder.query<Character[], [string, number]>({

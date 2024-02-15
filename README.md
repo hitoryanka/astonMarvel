@@ -1,7 +1,7 @@
 # marvelwiki
 
 - Предметная область: Marvel API Encyclopedia
-- Использованное API: http://gateway.marvel.com/v1/public
+- Использованное API: https://gateway.marvel.com/v1/public
 <h2>Основной функционал</h2>
 
 - Регистрация пользователей
