@@ -9,12 +9,19 @@ import { SyntheticEvent, useState } from 'react';
 import s from '../styles.module.css';
 import { FavoriteCharacter } from '../../../types';
 import { FavoriteButton } from './FavoriteButton';
+import PropTypes from 'prop-types';
 
 interface heroCardProps {
   id: number;
   cover: string;
   name: string;
 }
+
+HeroCard.propTypes = {
+  id: PropTypes.number,
+  cover: PropTypes.string,
+  name: PropTypes.string,
+};
 
 export function HeroCard(props: heroCardProps) {
   const { id, cover, name } = props;

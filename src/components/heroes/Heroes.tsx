@@ -12,13 +12,8 @@ export function Heroes() {
     useGetCharactersQuery([searchQuery, offset]);
 
   const handleScroll = () => {
-    // const heroesSection = heroesSectionRef.current as HTMLElement;
-    // const { height: heroesHeight } =
-    //   window.getComputedStyle(heroesSection);
-    // console.log(heroesHeight);
     const { scrollHeight, clientHeight, scrollTop } =
       document.documentElement;
-    console.log(isSuccess, isFetching);
     if (!isSuccess) {
       return;
     }
@@ -38,14 +33,6 @@ export function Heroes() {
     setHeroes([]);
     setOffset(0);
   }, [searchQuery]);
-
-  // useEffect(() => {
-  //   if (data?.length === 0) {
-  //     console.log(data);
-  //     console.log('data is empty');
-  //     document.removeEventListener('scroll', handleScroll);
-  //   }
-  // }, [data]);
 
   if (isLoading) {
     return (
