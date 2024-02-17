@@ -1,96 +1,83 @@
 import { useGetCharactersQuery } from '../../store/features/charactersApi';
-import { useNavigate } from 'react-router-dom';
-import s from './styles.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addToFavorites,
-  removeFromFavorites,
-  selectFavorites,
-} from '../../store/features/userSlice';
-import { SyntheticEvent, useState } from 'react';
-import { FavoriteCharacter } from '../../types';
-
-import favoriteActive from '../../assets/favorites-active.png';
-import favorite from '../../assets/favorites.png';
+import { useEffect, useRef, useState } from 'react';
+import { Character } from '../../types';
 import { useSearchQuery } from '../header/search/hooks';
-
+import { HeroesList, Loader } from './components/HeroesList';
 export function Heroes() {
   const [searchQuery] = useSearchQuery();
-  const { data, isLoading, isError, isSuccess } =
-    useGetCharactersQuery(searchQuery);
+  const [offset, setOffset] = useState(0);
+  const heroesSectionRef = useRef<HTMLElement>(null);
+  const [heroes, setHeroes] = useState<Character[]>([]);
+  const { data, isLoading, isFetching, isError, isSuccess } =
+    useGetCharactersQuery([searchQuery, offset]);
 
-  if (isLoading) return <p>loading..</p>;
-  if (isError) return <p>request failed</p>;
+  const handleScroll = () => {
+    // const heroesSection = heroesSectionRef.current as HTMLElement;
+    // const { height: heroesHeight } =
+    //   window.getComputedStyle(heroesSection);
+    // console.log(heroesHeight);
+    const { scrollHeight, clientHeight, scrollTop } =
+      document.documentElement;
+    console.log(isSuccess, isFetching);
+    if (!isSuccess) {
+      return;
+    }
+    if (scrollTop + clientHeight >= scrollHeight - 100) {
+      setOffset(prev => prev + data.length);
+    }
+  };
 
-  if (isSuccess) {
-    const heroes = data.map(({ id, thumbnail, name }) => {
-      const cover = `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`;
-      return <HeroCard key={id} id={id} cover={cover} name={name} />;
-    });
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [isFetching]);
 
+  useEffect(() => {
+    setHeroes([]);
+    setOffset(0);
+  }, [searchQuery]);
+
+  // useEffect(() => {
+  //   if (data?.length === 0) {
+  //     console.log(data);
+  //     console.log('data is empty');
+  //     document.removeEventListener('scroll', handleScroll);
+  //   }
+  // }, [data]);
+
+  if (isLoading) {
     return (
-      <main>
-        <section className={s.heroes}>{heroes}</section>
+      <main id="heroes-wrapper">
+        <Loader />
       </main>
     );
   }
-  return <span>doing something else?</span>;
-}
-
-interface heroCardProps {
-  id: number;
-  cover: string;
-  name: string;
-}
-
-export function HeroCard(props: heroCardProps) {
-  const { id, cover, name } = props;
-  const navigate = useNavigate();
-  const favorites = useSelector(selectFavorites);
-  const [isFavorite, setIsFavorite] = useState(
-    checkIsFavorite(id, favorites),
-  );
-  const dispatch = useDispatch();
-
-  const handleNavigate = () => {
-    navigate(`/heroes/${id}`);
-  };
-
-  const toggleFavorite = (e: SyntheticEvent) => {
-    e.stopPropagation();
-    setIsFavorite(prev => !prev);
-    if (!isFavorite) {
-      dispatch(addToFavorites({ id, cover, name }));
-      return;
+  if (isFetching) {
+    return (
+      <main id="heroes-wrapper">
+        <div id="margin-container-top"></div>
+        <HeroesList ref={heroesSectionRef}>{heroes}</HeroesList>
+        <div id="margin-container-bottom"></div>
+        <Loader />
+      </main>
+    );
+  }
+  if (isSuccess) {
+    const itemsCnt = offset + data.length;
+    if (heroes.length < itemsCnt) {
+      setHeroes([...heroes, ...data]);
     }
-
-    dispatch(removeFromFavorites(id));
-  };
-
-  return (
-    <article className={s['hero-container']} onClick={handleNavigate}>
-      <img
-        className={s['hero-thumbnail']}
-        src={cover}
-        alt={name + ' thumbnail'}
-      />
-      <div className={s['name-wrapper']}>
-        <span className={s['name-wrapper-curtain']}></span>
-        <h2 className={s['hero-name']}>{name}</h2>
-        <button
-          className={s['favorite-check']}
-          onClick={toggleFavorite}
-        >
-          <img
-            src={isFavorite ? favoriteActive : favorite}
-            alt="click to save"
-          />
-        </button>
-      </div>
-    </article>
-  );
+    return (
+      <main id="heroes-wrapper">
+        <div id="margin-container-top"></div>
+        <HeroesList ref={heroesSectionRef}>{heroes}</HeroesList>
+        <div id="margin-container-bottom"></div>
+      </main>
+    );
+  }
+  if (isError) return <p>request failed</p>;
 }
 
-function checkIsFavorite(id: number, favorites: FavoriteCharacter[]) {
-  return Boolean(favorites.find(hero => hero.id === id));
-}
+// TODO when empty array is returned from useGetCharactersQuery, remove the scroll handler

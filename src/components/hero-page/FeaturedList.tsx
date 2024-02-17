@@ -17,7 +17,6 @@ export function FeaturedList({ type }: Props) {
     useGetCharacterFeaturedQuery([id as string, type]);
 
   const handleToggle = () => {
-    console.log('toggled list');
     if (!refList.current || !refIcon.current) {
       return;
     }

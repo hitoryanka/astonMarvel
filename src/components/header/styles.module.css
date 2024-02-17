@@ -5,11 +5,12 @@
 
   background-color: #151515;
   max-width: 1100px;
-  width: 75%;
+  width: 90%;
   height: 50px;
 }
 
 .logo {
+  cursor: pointer;
   letter-spacing: -4px;
   font-family: 'Roboto Condensed', sans-serif;
   display: flex;
