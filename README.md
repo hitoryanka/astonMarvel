@@ -45,13 +45,13 @@
 - [x] [Есть хотя бы один **кастомный хук**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
 - [ ] Хотя бы несколько компонентов используют **PropTypes**
 - [x] [Поиск не должен триггерить много запросов к серверу (**debounce**)](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
-- [x] Есть применение **lazy + Suspense**
+- [x] [Есть применение **lazy + Suspense**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/user-page/UserContent.tsx)
 
 **Redux**
 
 - [x] [Используем **Modern Redux with Redux Toolkit**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/store.ts)
 - [x] [Используем **слайсы**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/userSlice.ts)
-- [x] Есть хотя бы одна **кастомная мидлвара**
+- [x] [Есть хотя бы одна **кастомная мидлвара**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/store.ts)
 - [x] [Используется **RTK Query**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/charactersApi.ts)
 - [x] [Используется **Transforming Responses**](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/charactersApi.ts)
 
