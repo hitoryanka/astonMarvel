@@ -43,7 +43,7 @@
 - [ ] Есть применение **Контекст API**
 - [ ] Есть применение **предохранителя**
 - [x] [Есть хотя бы один **кастомный хук**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
-- [ ] Хотя бы несколько компонентов используют **PropTypes**
+- [x] Хотя бы несколько компонентов используют **PropTypes**
 - [x] [Поиск не должен триггерить много запросов к серверу (**debounce**)](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
 - [x] Есть применение **lazy + Suspense**
 
