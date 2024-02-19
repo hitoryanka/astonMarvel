@@ -1,5 +1,7 @@
 .search-wrapper {
   position: relative;
+  width: clamp(100px, 50%, 300px);
+  /* flex-grow: 1; */
 }
 
 .suggestion-list {
@@ -28,8 +30,9 @@
   font-family: 'Roboto Condensed', sans-serif;
   height: 30px;
   border-radius: 8px;
+  width: clamp(100px, 40vw, 300px);
   border: none;
-  font-size: 24px;
+  font-size: clamp(16px, 3vw, 24px);
   color: #fff;
   background-color: rgb(73, 66, 66);
 }

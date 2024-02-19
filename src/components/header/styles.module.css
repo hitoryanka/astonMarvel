@@ -4,23 +4,27 @@
   align-items: center;
 
   background-color: #151515;
-  max-width: 1100px;
-  width: 90%;
+  width: clamp(300px, 90%, 1100px);
   height: 50px;
 }
 
 .logo {
   cursor: pointer;
-  letter-spacing: -4px;
+  letter-spacing: -2px;
   font-family: 'Roboto Condensed', sans-serif;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   box-sizing: border-box;
   background-color: #e62429;
   height: 50px;
-
-  font-size: 32px;
+  width: clamp(80px, 25%, 150px);
+  font-size: clamp(20px, 3vw, 24px);
   padding: 5px;
   text-decoration: none;
   color: #fff;
+
+  @media (width <= 600px) {
+  }
 }
