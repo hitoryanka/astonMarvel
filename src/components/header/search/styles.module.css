@@ -1,14 +1,12 @@
 .search-wrapper {
   position: relative;
-  width: clamp(100px, 50%, 300px);
-  /* flex-grow: 1; */
 }
 
 .suggestion-list {
   padding: 0px;
   position: absolute;
   display: block;
-  width: 255px;
+  width: clamp(100px, 40vw, 300px);
   top: 35px;
 
   max-height: 500px;
