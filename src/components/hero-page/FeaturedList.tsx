@@ -61,6 +61,9 @@ export function FeaturedList({ type }: Props) {
           {data.map(item => (
             <FeaturedItem key={item.id} {...item} />
           ))}
+          {!data.length && (
+            <p className={s['empty-list']}>Wow, such emptiness...</p>
+          )}
         </ul>
       </section>
     );
