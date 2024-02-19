@@ -16,9 +16,12 @@ export const charactersApi = createApi({
     baseUrl: `https://gateway.marvel.com/v1/public/characters`,
   }),
   endpoints: builder => ({
-    getCharacters: builder.query<Character[], [string, number]>({
-      query: ([name, offset]) => {
-        const page = `&limit=${ITEMS_LIMIT}&offset=${offset}`;
+    getCharacters: builder.query<
+      Character[],
+      [string, number, number]
+    >({
+      query: ([name, limit, offset]) => {
+        const page = `&limit=${limit}&offset=${offset}`;
         if (name) {
           return `${SEARCH_PARAMS}&nameStartsWith=${name}${page}`;
         }

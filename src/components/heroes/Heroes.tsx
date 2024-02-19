@@ -1,5 +1,5 @@
 import { useGetCharactersQuery } from '../../store/features/charactersApi';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Character } from '../../types';
 import { useSearchQuery } from '../header/search/hooks';
 import { HeroesList, Loader } from './components/HeroesList';
@@ -7,9 +7,19 @@ export function Heroes() {
   const [searchQuery] = useSearchQuery();
   const [offset, setOffset] = useState(0);
   const heroesSectionRef = useRef<HTMLElement>(null);
+  const limit = useMemo<number>(() => {
+    const cols = Math.trunc(
+      (document.documentElement.clientWidth * 0.9) / 160,
+    );
+    const rows = Math.trunc(
+      (document.documentElement.clientHeight * 0.9) / 180,
+    );
+
+    return cols * rows;
+  }, [offset]);
   const [heroes, setHeroes] = useState<Character[]>([]);
   const { data, isLoading, isFetching, isError, isSuccess } =
-    useGetCharactersQuery([searchQuery, offset]);
+    useGetCharactersQuery([searchQuery, limit, offset]);
 
   const handleScroll = () => {
     const { scrollHeight, clientHeight, scrollTop } =
