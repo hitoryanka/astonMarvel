@@ -16,7 +16,7 @@
 }
 
 .hero-name {
-  font-size: 48px;
+  font-size: clamp(28px, 5vw, 48px);
 }
 
 .hero-description {

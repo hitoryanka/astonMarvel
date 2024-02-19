@@ -1,6 +1,11 @@
 .auth {
   /* margin-right: 10px; */
 
+  @media (width <= 524px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   .profile-pic {
     width: 35px;
     margin-right: 10px;
@@ -8,19 +13,22 @@
 
   .auth-link-wrapper {
     border: none;
-    height: 50px;
     background-color: #151515;
     cursor: pointer;
 
     &:hover {
       background-color: grey;
     }
+
+    @media (width >= 525px) {
+      height: 50px;
+    }
   }
 }
 
 .auth-link {
   text-decoration: none;
-  font-size: 24px;
+  font-size: clamp(18px, 3vw, 24px);
   font-family: 'Marvel', sans-serif;
   color: #fff;
 }

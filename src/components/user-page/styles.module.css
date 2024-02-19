@@ -7,7 +7,7 @@
 }
 
 .user-email {
-  font-size: 36px;
+  font-size: clamp(28px, 5vw, 32px);
 }
 
 .display-buttons {
@@ -65,16 +65,22 @@
   }
 }
 
-.history-clock {
-  width: 40px;
+.history-query,
+.history-entry-date {
+  font-size: clamp(18px, 3vw, 24px);
+}
+
+.history-entry-date {
+  text-align: end;
 }
 
 .remove-entry {
   all: unset;
 }
 
-.remove-entry-icon {
-  width: 40px;
+.remove-entry-icon,
+.history-clock {
+  width: clamp(20px, 5vw, 40px);
 }
 
 .history-query {
