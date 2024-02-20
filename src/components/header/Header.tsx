@@ -8,14 +8,14 @@ import { themeContext } from '../../App';
 
 export function Header() {
   return (
-    <>
+    <section className={s['header-wrapper']}>
       <header className={s.header}>
         <Logo />
         <Search />
         <AuthButtons />
       </header>
       <ToggleTheme />
-    </>
+    </section>
   );
 }
 
