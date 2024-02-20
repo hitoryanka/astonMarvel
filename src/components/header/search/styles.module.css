@@ -49,7 +49,7 @@
   }
 
   &:hover {
-    background-color: #151515;
+    background-color: var(--marvel-gray-color);
   }
 }
 

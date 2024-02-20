@@ -4,20 +4,11 @@ import { Character } from '../../types';
 import { useSearchQuery } from '../header/search/hooks';
 import { HeroesList, Loader } from './components/HeroesList';
 export function Heroes() {
-  const [searchQuery] = useSearchQuery();
   const [offset, setOffset] = useState(0);
-  const heroesSectionRef = useRef<HTMLElement>(null);
-  const limit = useMemo<number>(() => {
-    const cols = Math.trunc(
-      (document.documentElement.clientWidth * 0.9) / 160,
-    );
-    const rows = Math.trunc(
-      (document.documentElement.clientHeight * 0.9) / 180,
-    );
-
-    return cols * rows;
-  }, [offset]);
   const [heroes, setHeroes] = useState<Character[]>([]);
+  const [searchQuery] = useSearchQuery();
+  const limit = useMemo<number>(calculateLimit, [offset]);
+  const heroesSectionRef = useRef<HTMLElement>(null);
   const { data, isLoading, isFetching, isError, isSuccess } =
     useGetCharactersQuery([searchQuery, limit, offset]);
 
@@ -77,4 +68,13 @@ export function Heroes() {
   if (isError) return <p>request failed</p>;
 }
 
-// TODO when empty array is returned from useGetCharactersQuery, remove the scroll handler
+const calculateLimit = () => {
+  const cols = Math.trunc(
+    (document.documentElement.clientWidth * 0.9) / 160,
+  );
+  const rows = Math.trunc(
+    (document.documentElement.clientHeight * 0.9) / 180,
+  );
+
+  return cols * rows;
+};

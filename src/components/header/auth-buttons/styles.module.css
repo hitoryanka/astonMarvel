@@ -13,7 +13,7 @@
 
   .auth-link-wrapper {
     border: none;
-    background-color: #151515;
+    background-color: var(--marvel-gray-color);
     cursor: pointer;
 
     &:hover {
@@ -69,10 +69,10 @@
   text-align: center;
 
   &:first-child {
-    border-bottom: 1px solid #151515;
+    border-bottom: 1px solid var(--marvel-gray-color);
   }
 
   &:hover {
-    background-color: #151515;
+    background-color: var(--marvel-gray-color);
   }
 }
