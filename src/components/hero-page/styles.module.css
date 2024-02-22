@@ -16,7 +16,7 @@
 }
 
 .hero-name {
-  font-size: 48px;
+  font-size: clamp(28px, 5vw, 48px);
 }
 
 .hero-description {
@@ -72,13 +72,17 @@
   overflow: hidden;
   max-height: 2000px;
 
-  background-color: #151515;
+  background-color: var(--marvel-gray-color);
 
   transition: max-height 0.3s ease-in-out;
 
   &.collapsed {
     max-height: 0px;
   }
+}
+
+.empty-list {
+  color: white;
 }
 
 .list-item {

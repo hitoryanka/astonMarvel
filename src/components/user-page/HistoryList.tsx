@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   removeFromHistory,
   selectHistory,
@@ -27,6 +28,11 @@ interface HistoryEntryProps {
   children: string;
   id: number;
 }
+
+HistoryEntry.propTypes = {
+  children: PropTypes.string.isRequired,
+  id: PropTypes.number,
+};
 
 const dateOptions: Intl.DateTimeFormatOptions = {
   year: 'numeric',

@@ -1,0 +1,8 @@
+.to-home {
+  cursor: pointer;
+  color: var(--marvel-red-color);
+
+  &:hover {
+    color: rgb(228, 92, 92);
+  }
+}

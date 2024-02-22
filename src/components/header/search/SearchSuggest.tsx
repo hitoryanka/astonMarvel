@@ -9,7 +9,7 @@ interface Props {
 export const SearchSuggest = memo(function SearchSuggest(p: Props) {
   const { query } = p;
   const { data, isSuccess, isError, isLoading } =
-    useGetCharactersQuery([query, 0]);
+    useGetCharactersQuery([query, 25, 0]);
 
   if (isLoading) {
     // TODO skeletons would be great

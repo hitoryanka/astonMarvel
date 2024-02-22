@@ -40,7 +40,7 @@ export function Signup() {
   return (
     <section className={s.wrapper}>
       <header className={s.header}>
-        <h1>Create new account</h1>
+        <h1 className={s.heading}>Create new account</h1>
         <p className={s.error}>{error && `Error: ${error}`}</p>
       </header>
       <form className={s.form} onSubmit={handleSubmit} action="">
@@ -73,7 +73,9 @@ export function Signup() {
         </div>
         <small className={s.caption}>
           already have an account? -{' '}
-          <Link to="/auth/signin">login!</Link>
+          <Link className={s['caption-link']} to="/auth/signin">
+            login!
+          </Link>
         </small>
         <button onClick={handleAuth} className={s.submit}>
           Submit

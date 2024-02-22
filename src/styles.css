@@ -5,6 +5,21 @@ a {
   all: unset;
 }
 
+body {
+  --marvel-red-color: #e62429;
+  --marvel-gray-color: #151515;
+}
+
+body[data-theme='dark'] {
+  background-color: #3b3a3a;
+  color: #d4cbcb;
+}
+
+body[data-theme='light'] {
+  background-color: white;
+  color: #000;
+}
+
 #root {
   display: flex;
   flex-direction: column;

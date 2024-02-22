@@ -4,10 +4,16 @@ import { useRef } from 'react';
 import s from './styles.module.css';
 import { Featured } from '../../types';
 import toggleFeaturedPNG from '../../assets/toggle-featured.png';
+import PropTypes from 'prop-types';
 
 interface Props {
   type: 'comics' | 'series';
 }
+
+FeaturedList.propTypes = {
+  type: PropTypes.oneOf(['comics', 'series']),
+};
+
 export function FeaturedList({ type }: Props) {
   // REFACTOR using refToggle rewrite refList to pure css
   const refList = useRef<HTMLUListElement>(null);
@@ -55,6 +61,9 @@ export function FeaturedList({ type }: Props) {
           {data.map(item => (
             <FeaturedItem key={item.id} {...item} />
           ))}
+          {!data.length && (
+            <p className={s['empty-list']}>Wow, such emptiness...</p>
+          )}
         </ul>
       </section>
     );
