@@ -40,7 +40,7 @@
 - [x] Есть разделение на **умные и глупые компоненты**
 - [x] [Есть **рендеринг списков**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
 - [x] [Реализована хотя бы одна **форма**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
-- [ ] Есть применение **Контекст API**
+- [x] Есть применение **Контекст API**
 - [x] Есть применение **предохранителя**
 - [x] [Есть хотя бы один **кастомный хук**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
 - [x] Хотя бы несколько компонентов используют **PropTypes**

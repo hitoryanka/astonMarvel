@@ -31,7 +31,6 @@ function ToggleTheme() {
   const [theme, setTheme] = useContext(themeContext);
   const changeTheme = (e: SyntheticEvent) => {
     e.preventDefault();
-    console.log('handler called');
     if (theme === 'light') {
       setTheme('dark');
       return;

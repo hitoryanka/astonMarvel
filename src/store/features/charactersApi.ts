@@ -28,6 +28,26 @@ export const charactersApi = createApi({
         return `${SEARCH_PARAMS}${page}`;
       },
       transformResponse: ({ data }) => data.results,
+
+      serializeQueryArgs: ({ queryArgs, endpointName }) => {
+        return endpointName + '/' + queryArgs[0];
+      },
+      merge: (cacheItems, newItems) => {
+        const existingIds = new Set(cacheItems.map(item => item.id));
+        const newUniqueItems = newItems.filter(
+          item => !existingIds.has(item.id),
+        );
+        cacheItems.push(...newUniqueItems);
+      },
+
+      forceRefetch: ({ currentArg, previousArg }) => {
+        const search = currentArg?.[0];
+        const prevSearch = previousArg?.[0];
+        const offset = currentArg?.[2];
+        const prevOffset = previousArg?.[2];
+
+        return search !== prevSearch || offset !== prevOffset;
+      },
     }),
 
     getCharacterById: builder.query<Character, number | string>({
