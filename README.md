@@ -40,11 +40,11 @@
 - [x] Есть разделение на **умные и глупые компоненты**
 - [x] [Есть **рендеринг списков**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
 - [x] [Реализована хотя бы одна **форма**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
-- [x] Есть применение **Контекст API**
-- [x] Есть применение **предохранителя**
+- [x] [Есть применение **Контекст API**](https://github.com/hitoryanka/astonMarvel/blob/main/src/App.tsx)
+- [x] [Есть применение **предохранителя**](https://github.com/hitoryanka/astonMarvel/blob/main/src/router.tsx)
 - [x] [Есть хотя бы один **кастомный хук**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
-- [x] Хотя бы несколько компонентов используют **PropTypes**
-- [x] [Поиск не должен триггерить много запросов к серверу (**debounce**)](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts)
+- [x] [Хотя бы несколько компонентов используют **PropTypes**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/components/HeroCard.tsx)
+- [x] [Поиск не должен триггерить много запросов к серверу (**debounce**)](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/header/search/hooks.ts), [featuredList](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/hero-page/FeaturedList.tsx), [HeroCard](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/components/HeroCard.tsx)
 - [x] [Есть применение **lazy + Suspense**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/user-page/UserContent.tsx)
 
 **Redux**
