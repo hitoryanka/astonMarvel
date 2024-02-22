@@ -6,9 +6,15 @@ import { Header } from './components/header/Header';
 import { User } from './components/user-page/User';
 import { Hero } from './components/hero-page/Hero';
 import { NotFountPage } from './components/not-found-page/NotFountPage';
+import { ErrorBoundary } from 'react-error-boundary';
+import { ErrorFallback } from './ErrorFallback';
 
 export const router = createBrowserRouter([
-  { path: '/*', element: <NotFountPage /> },
+  {
+    path: '/*',
+    element: <NotFountPage />,
+    errorElement: <ErrorBoundary fallback={<ErrorFallback />} />,
+  },
   {
     path: '/heroes',
     element: (
