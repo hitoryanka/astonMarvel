@@ -41,7 +41,11 @@ function ToggleTheme() {
 
   return (
     <div className={s['theme-wrapper']}>
-      <img src={ThemePNG} className={s['theme-icon']} />
+      <img
+        src={ThemePNG}
+        className={s['theme-icon']}
+        alt="change-theme"
+      />
       <label
         onClick={changeTheme}
         htmlFor={s.theme}
