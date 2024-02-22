@@ -5,8 +5,10 @@ import { Signin } from './components/auth/Signin';
 import { Header } from './components/header/Header';
 import { User } from './components/user-page/User';
 import { Hero } from './components/hero-page/Hero';
+import { NotFountPage } from './components/not-found-page/NotFountPage';
 
 export const router = createBrowserRouter([
+  { path: '/*', element: <NotFountPage /> },
   {
     path: '/heroes',
     element: (
