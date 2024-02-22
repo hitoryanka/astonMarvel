@@ -1,12 +1,14 @@
 # marvelwiki
 
-- Предметная область: Marvel API Encyclopedia
+- Предметная область: Marvel Heroes List
 - Использованное API: https://gateway.marvel.com/v1/public
+- [развернутое приложение](https://main--marvelheroeswiki.netlify.app/heroes) 
 <h2>Основной функционал</h2>
 
 - Регистрация пользователей
-- избранные карточки: добавление, удаление и отображение
-- Поиск карточек
+- избранные герои: добавление, удаление и отображение
+- Поиск героев
+- сохранение истории поиска
 
 <h2>Реализация требований</h2>
 
@@ -37,7 +39,7 @@
 **React**
 
 - [x] [**Пишем функциональные компоненты c хуками** в приоритете над классовыми.](https://github.com/hitoryanka/astonMarvel/tree/main/src/components)
-- [x] Есть разделение на **умные и глупые компоненты**
+- [x] [Есть разделение на **умные и глупые компоненты**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/components/FavoriteButton.tsx)
 - [x] [Есть **рендеринг списков**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/heroes/Heroes.tsx)
 - [x] [Реализована хотя бы одна **форма**](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
 - [x] [Есть применение **Контекст API**](https://github.com/hitoryanka/astonMarvel/blob/main/src/App.tsx)
