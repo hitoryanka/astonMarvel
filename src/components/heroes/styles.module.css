@@ -3,6 +3,7 @@
   grid-template-columns: repeat(auto-fit, 140px);
   justify-content: center;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
 .hero-container {
@@ -57,7 +58,14 @@
   position: sticky;
   cursor: text;
   margin-left: 10px;
+  margin-right: 10px;
   font-family: 'Marvel', sans-serif;
+
+  text-overflow: clip;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-break: break-all;
+  height: 90px;
 }
 
 .favorite-check {
