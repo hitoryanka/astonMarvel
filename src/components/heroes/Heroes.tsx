@@ -74,5 +74,5 @@ const calculateLimit = () => {
     (document.documentElement.clientHeight * 0.9) / 180,
   );
 
-  return cols * rows;
+  return Math.trunc(cols * rows * 1.5);
 };
