@@ -8,7 +8,11 @@
 
   .profile-pic {
     width: 35px;
-    margin-right: 10px;
+    margin-right: 20px;
+
+    @media (width <= 768px) {
+      margin-right: 40px;
+    }
   }
 
   .auth-link-wrapper {

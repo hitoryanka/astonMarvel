@@ -2,7 +2,9 @@
 
 - Предметная область: Marvel Heroes List
 - Использованное API: https://gateway.marvel.com/v1/public
+
 - [развернутое приложение](https://main--marvelheroeswiki.netlify.app/heroes) 
+
 <h2>Основной функционал</h2>
 
 - Регистрация пользователей
