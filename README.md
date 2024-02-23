@@ -2,6 +2,7 @@
 
 - Предметная область: Marvel API Encyclopedia
 - Использованное API: https://gateway.marvel.com/v1/public
+- [deploy](https://main--marvelheroeswiki.netlify.app/heroes)
 <h2>Основной функционал</h2>
 
 - Регистрация пользователей

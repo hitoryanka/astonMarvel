@@ -79,7 +79,6 @@
   text-overflow: clip;
   overflow: hidden;
   overflow-wrap: break-word;
-  /* word-break: break-all; */
   height: 90px;
 }
 

@@ -13,7 +13,6 @@ export default function HeroThumbnail({
   const imgRef = useRef<HTMLImageElement>(null);
   const fallbackRef = useRef<HTMLDivElement>(null);
   const handleLoad = () => {
-    console.log('loaded');
     const img = imgRef.current as HTMLImageElement;
     const fallback = fallbackRef.current as HTMLDivElement;
 
