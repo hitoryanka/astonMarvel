@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 10px;
 
-  @media (width <= 670px) {
+  @media (width <= 768px) {
     top: 0;
     width: 100vw;
   }
@@ -46,7 +46,7 @@
   --label-height: 20px;
   --circle-shift: calc(var(--label-width) - var(--label-height));
 
-  @media (width <= 670px) {
+  @media (width <= 768px) {
     margin-right: 40px;
   }
 }
