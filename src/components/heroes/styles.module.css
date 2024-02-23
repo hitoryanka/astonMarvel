@@ -30,8 +30,23 @@
 }
 
 .hero-thumbnail {
+  display: hidden;
   transform: scale(1);
   transition: transform 0.3s;
+}
+
+.thumbnail-fallback {
+  width: 140px;
+  height: 140px;
+  background-color: grey;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: hidden;
 }
 
 .name-wrapper {

@@ -10,6 +10,7 @@ import s from '../styles.module.css';
 import { FavoriteCharacter } from '../../../types';
 import { FavoriteButton } from './FavoriteButton';
 import PropTypes from 'prop-types';
+import HeroThumbnail from './HeroThumbnail';
 
 interface heroCardProps {
   id: number;
@@ -49,11 +50,7 @@ export function HeroCard(props: heroCardProps) {
 
   return (
     <article className={s['hero-container']} onClick={handleNavigate}>
-      <img
-        className={s['hero-thumbnail']}
-        src={cover}
-        alt={name + ' thumbnail'}
-      />
+      <HeroThumbnail src={cover} alt={name + '-thumbnail'} />
       <div className={s['name-wrapper']}>
         <span className={s['name-wrapper-curtain']}></span>
         <h2 className={s['hero-name']}>{name}</h2>
