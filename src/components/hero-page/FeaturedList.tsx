@@ -19,6 +19,8 @@ export function FeaturedList({ type }: Props) {
   const refList = useRef<HTMLUListElement>(null);
   const refIcon = useRef<HTMLImageElement>(null);
   const { id } = useParams();
+  // этот компонент работает только на странице,
+  // в которой есть "id"
   const { data, isLoading, isError, isSuccess } =
     useGetCharacterFeaturedQuery([id as string, type]);
 

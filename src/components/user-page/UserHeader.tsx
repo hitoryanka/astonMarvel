@@ -26,6 +26,7 @@ interface ViewButtonProps {
 
 export function ViewButton({ children }: ViewButtonProps) {
   const [view, setView] = useViewParam();
+
   const handleView = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setView(target.id);

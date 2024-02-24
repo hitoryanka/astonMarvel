@@ -21,7 +21,6 @@ export function Search() {
   };
 
   const handleKeyDown = ({ target, key }: r.KeyboardEvent) => {
-    // BUG doesn't navigate to heroes
     const input = target as HTMLInputElement;
     if (key === 'Enter') {
       navigate('/heroes');

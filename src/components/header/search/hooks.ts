@@ -13,6 +13,8 @@ export function useSearchQuery() {
   };
   const searchQuery = searchParam.get('search') ?? '';
 
+  // без "as" массиву присвоится union type:
+  // "[string | (newQuery: string) => void]"
   return [searchQuery, setSearchQuery] as [
     string,
     (newQuery: string) => void,
