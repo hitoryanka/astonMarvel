@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import s from './styles.module.css';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/features/userSlice';
@@ -9,9 +9,12 @@ import { useNavigate } from 'react-router-dom';
 export function UserHeader() {
   const { email } = useSelector(selectUser);
   const navigate = useNavigate();
-  if (email === 'null') {
-    navigate('./heroes');
-  }
+
+  useEffect(() => {
+    if (email === 'null') {
+      navigate('/heroes');
+    }
+  });
 
   return (
     <header className={s['user-header']}>
