@@ -3,19 +3,16 @@ import { store } from './store/store';
 import './styles.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
+import { getTheme, useThemeUpdate } from './lib';
 
 export const themeContext = createContext<
-  [string, React.Dispatch<React.SetStateAction<string>>]
+  [string, React.Dispatch<React.SetStateAction<'light' | 'dark'>>]
 >(['light', (): void => {}]);
 
 function App() {
-  const [theme, setTheme] = useState<string>(getTheme());
-
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+  const [theme, setTheme] = useState<'light' | 'dark'>(getTheme());
+  useThemeUpdate(theme);
 
   return (
     <Provider store={store}>
@@ -27,7 +24,3 @@ function App() {
 }
 
 export default App;
-
-const getTheme = (): string => {
-  return localStorage.getItem('theme') ?? 'light';
-};
