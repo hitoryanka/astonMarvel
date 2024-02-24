@@ -15,7 +15,6 @@ FeaturedList.propTypes = {
 };
 
 export function FeaturedList({ type }: Props) {
-  // REFACTOR using refToggle rewrite refList to pure css
   const refList = useRef<HTMLUListElement>(null);
   const refIcon = useRef<HTMLImageElement>(null);
   const { id } = useParams();

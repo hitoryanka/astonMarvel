@@ -6,9 +6,7 @@ import { Character, Featured } from '../../types';
 
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
 const HASH_KEY = import.meta.env.VITE_HASH_KEY;
-// REFACTOR there's a better way for sure
 const SEARCH_PARAMS = `?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH_KEY}`;
-export const ITEMS_LIMIT = 25;
 
 export const charactersApi = createApi({
   reducerPath: 'heroes',

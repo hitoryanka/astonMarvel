@@ -12,7 +12,6 @@ export const SearchSuggest = memo(function SearchSuggest(p: Props) {
     useGetCharactersQuery([query, 25, 0]);
 
   if (isLoading) {
-    // TODO skeletons would be great
     return <ul className={s['suggestion-list']}>Loading...</ul>;
   }
 

@@ -45,7 +45,6 @@ const authSlice = createSlice({
       state.isLogged = true;
     },
 
-    // every time user is updated it is synced "users", so I need just clear it from localStorage
     logout(state) {
       state.error = null;
       state.isLogged = false;

@@ -8,7 +8,6 @@ import {
   signup,
 } from '../../store/features/authSlice';
 
-// TODO merge singup and signin - thinking props
 export function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

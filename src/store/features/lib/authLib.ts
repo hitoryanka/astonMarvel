@@ -55,7 +55,6 @@ export function authorizeExisting(
   return null;
 }
 
-// TODO move localStorage side effects to custom middleware
 export function authorizeNew(
   email: string,
   password: string,

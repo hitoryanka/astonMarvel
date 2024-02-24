@@ -28,8 +28,6 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // TODO after updating user need to update users array
-
     addToFavorites(state, { payload }) {
       state.favorites.push(payload);
     },

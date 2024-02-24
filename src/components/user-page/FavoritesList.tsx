@@ -3,7 +3,6 @@ import { selectFavorites } from '../../store/features/userSlice';
 import { HeroCard } from '../heroes/components/HeroCard';
 
 export default function FavoritesList() {
-  // REFACTOR if the app is no longer about heroes start from here
   const favorites = useSelector(selectFavorites);
 
   if (!favorites.length) {
