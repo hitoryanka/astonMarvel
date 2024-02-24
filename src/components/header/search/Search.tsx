@@ -7,7 +7,6 @@ import { addToHistory } from '../../../store/features/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export function Search() {
-  // TODO custom hook for setting search param
   const [search, setSearch] = useState('');
   const debouncedValue = useDebounce(search, 1000);
   const [, setSearchQuery] = useSearchQuery();
@@ -21,7 +20,6 @@ export function Search() {
   };
 
   const handleKeyDown = ({ target, key }: r.KeyboardEvent) => {
-    // BUG doesn't navigate to heroes
     const input = target as HTMLInputElement;
     if (key === 'Enter') {
       navigate('/heroes');

@@ -1,12 +1,20 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import s from './styles.module.css';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/features/userSlice';
 import userPNG from '../../assets/profile-user.png';
 import { useViewParam } from './lib';
+import { useNavigate } from 'react-router-dom';
 
 export function UserHeader() {
   const { email } = useSelector(selectUser);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (email === 'null') {
+      navigate('/heroes');
+    }
+  });
 
   return (
     <header className={s['user-header']}>
@@ -26,6 +34,7 @@ interface ViewButtonProps {
 
 export function ViewButton({ children }: ViewButtonProps) {
   const [view, setView] = useViewParam();
+
   const handleView = (e: SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setView(target.id);

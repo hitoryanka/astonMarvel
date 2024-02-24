@@ -14,25 +14,10 @@ export function AuthButtons() {
   let content: ReactElement;
 
   if (isLogged) {
-    content = (
-      <Profile />
-      // <>
-      //   <NavLink
-      //     to={'/user'}
-      //     title="your profile page"
-      //     className={s['profile-pic-container']}
-      //   >
-      //     <img
-      //       className={s['profile-pic']}
-      //       src={userPNG}
-      //       alt="your profile"
-      //     />
-      //   </NavLink>
-      // </>
-    );
+    content = <Profile />;
   } else {
     content = (
-      <>
+      <div className={s['auth-buttons']}>
         <button className={s['auth-link-wrapper']}>
           <NavLink className={s['auth-link']} to="/auth/signup">
             sign up
@@ -43,7 +28,7 @@ export function AuthButtons() {
             sign in
           </NavLink>
         </button>
-      </>
+      </div>
     );
   }
 

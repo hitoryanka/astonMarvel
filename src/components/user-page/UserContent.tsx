@@ -6,7 +6,6 @@ const HistoryList = lazy(() => import('./HistoryList'));
 const FavoritesList = lazy(() => import('./FavoritesList'));
 
 export function UserContent() {
-  // REFACTOR send as prop
   const [view, setView] = useViewParam();
 
   useEffect(() => {

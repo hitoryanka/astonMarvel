@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-export function useSearchQuery() {
+export function useSearchQuery(): [
+  string,
+  (newQuery: string) => void,
+] {
   const [searchParam, setSearchParam] = useSearchParams();
 
   const setSearchQuery = (newQuery: string) => {
@@ -13,13 +16,10 @@ export function useSearchQuery() {
   };
   const searchQuery = searchParam.get('search') ?? '';
 
-  return [searchQuery, setSearchQuery] as [
-    string,
-    (newQuery: string) => void,
-  ];
+  return [searchQuery, setSearchQuery];
 }
 
-export function useDebounce(value: string, delay: number) {
+export function useDebounce(value: string, delay: number): string {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {

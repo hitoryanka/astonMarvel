@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useGetCharacterByIdQuery } from '../../store/features/charactersApi';
 import s from './styles.module.css';
 import { FeaturedList } from './FeaturedList';
@@ -14,7 +14,14 @@ export function Hero() {
   }
 
   if (isError) {
-    return <div>Error!</div>;
+    return (
+      <>
+        <h1>Seems like there`s no Hero with such id</h1>
+        <NavLink className={s['error-link']} to="/heroes">
+          Click here to go back to main page
+        </NavLink>
+      </>
+    );
   }
   if (isSuccess) {
     const thumbnail = `${data.thumbnail.path}/standard_xlarge.${data.thumbnail.extension}`;

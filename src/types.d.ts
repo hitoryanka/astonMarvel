@@ -1,4 +1,3 @@
-// TODO expand on this later
 type Thumbnail = {
   path: string;
   extension: string;

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import {
   authorizeExisting,
   authorizeNew,
@@ -45,7 +45,6 @@ const authSlice = createSlice({
       state.isLogged = true;
     },
 
-    // every time user is updated it is synced "users", so I need just clear it from localStorage
     logout(state) {
       state.error = null;
       state.isLogged = false;
@@ -56,7 +55,10 @@ const authSlice = createSlice({
 
 export type AuthState = typeof initialState;
 
-export const selectIsLogged = (state: State) => state.auth.isLogged;
+export const selectIsLogged = createSelector(
+  (state: State) => state.auth.isLogged,
+  isLogged => isLogged,
+);
 export const selectError = (state: State) => state.auth.error;
 
 export default authSlice.reducer;

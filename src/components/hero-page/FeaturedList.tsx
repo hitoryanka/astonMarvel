@@ -15,10 +15,11 @@ FeaturedList.propTypes = {
 };
 
 export function FeaturedList({ type }: Props) {
-  // REFACTOR using refToggle rewrite refList to pure css
   const refList = useRef<HTMLUListElement>(null);
   const refIcon = useRef<HTMLImageElement>(null);
   const { id } = useParams();
+  // этот компонент работает только на странице,
+  // в которой есть "id"
   const { data, isLoading, isError, isSuccess } =
     useGetCharacterFeaturedQuery([id as string, type]);
 

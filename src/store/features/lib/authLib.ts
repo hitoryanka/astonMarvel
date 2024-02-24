@@ -1,6 +1,6 @@
 import { User } from '../userSlice';
 
-export function getUsers() {
+export function getUsers(): User[] {
   const users: User[] | null = JSON.parse(
     localStorage.getItem('users') ?? 'null',
   );
@@ -13,7 +13,7 @@ export function getUsers() {
   return users;
 }
 
-export function updateUsers(updatedUser: User) {
+export function updateUsers(updatedUser: User): void {
   const users = getUsers().filter(
     user => user.email !== updatedUser.email,
   );
@@ -22,21 +22,24 @@ export function updateUsers(updatedUser: User) {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
-export function addUser(newUser: User) {
+export function addUser(newUser: User): void {
   const users = getUsers();
   users.push(newUser);
 
   localStorage.setItem('users', JSON.stringify(users));
 }
 
-export function findUser(email: string) {
+export function findUser(email: string): User | undefined {
   const users = getUsers();
 
   return users.find(user => user.email === email);
 }
 
 // returns error status
-export function authorizeExisting(email: string, password: string) {
+export function authorizeExisting(
+  email: string,
+  password: string,
+): 'Invalid credentials' | null {
   const user = findUser(email);
 
   if (!user || user.password !== password) {
@@ -52,12 +55,14 @@ export function authorizeExisting(email: string, password: string) {
   return null;
 }
 
-// TODO move localStorage side effects to custom middleware
-export function authorizeNew(email: string, password: string) {
+export function authorizeNew(
+  email: string,
+  password: string,
+): 'User with this email already exists' | null {
   const user = findUser(email);
 
   if (user) {
-    return 'user with this email already exists';
+    return 'User with this email already exists';
   }
 
   const newUser: User = {
@@ -78,7 +83,7 @@ export function authorizeNew(email: string, password: string) {
   return null;
 }
 
-export function logoutUser() {
+export function logoutUser(): void {
   localStorage.removeItem('email');
   localStorage.removeItem('password');
   localStorage.removeItem('history');

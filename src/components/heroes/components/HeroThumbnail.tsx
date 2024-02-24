@@ -12,7 +12,10 @@ export default function HeroThumbnail({
 }: HeroThumbnailProps) {
   const imgRef = useRef<HTMLImageElement>(null);
   const fallbackRef = useRef<HTMLDivElement>(null);
+
   const handleLoad = () => {
+    // Во время работы хендлера рефы уже будут проброшены,
+    // поэтому ошибки тут быть не должно
     const img = imgRef.current as HTMLImageElement;
     const fallback = fallbackRef.current as HTMLDivElement;
 

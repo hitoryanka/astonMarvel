@@ -3,23 +3,31 @@ import { store } from './store/store';
 import './styles.css';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
+import { getTheme, useThemeUpdate } from './lib';
 
-export const themeContext = createContext<
-  [string, React.Dispatch<React.SetStateAction<string>>]
->(['light', (): void => {}]);
+type ThemeContext = [
+  'light' | 'dark',
+  React.Dispatch<React.SetStateAction<'light' | 'dark'>>,
+];
+
+export const themeContext = createContext<ThemeContext>([
+  'light',
+  (): void => {},
+]);
 
 function App() {
-  const [theme, setTheme] = useState<string>(getTheme());
+  const [theme, setTheme] = useState<'light' | 'dark'>(getTheme());
+  useThemeUpdate(theme);
 
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
+  const contextValue: ThemeContext = useMemo(
+    () => [theme, setTheme],
+    [theme],
+  );
 
   return (
     <Provider store={store}>
-      <themeContext.Provider value={[theme, setTheme]}>
+      <themeContext.Provider value={contextValue}>
         <RouterProvider router={router} />
       </themeContext.Provider>
     </Provider>
@@ -27,7 +35,3 @@ function App() {
 }
 
 export default App;
-
-const getTheme = (): string => {
-  return localStorage.getItem('theme') ?? 'light';
-};

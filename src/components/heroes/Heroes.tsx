@@ -66,7 +66,7 @@ export function Heroes() {
   if (isError) return <p>request failed</p>;
 }
 
-const calculateLimit = () => {
+const calculateLimit = (): number => {
   const cols = Math.trunc(
     (document.documentElement.clientWidth * 0.9) / 160,
   );
