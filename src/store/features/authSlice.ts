@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import {
   authorizeExisting,
   authorizeNew,
@@ -55,7 +55,10 @@ const authSlice = createSlice({
 
 export type AuthState = typeof initialState;
 
-export const selectIsLogged = (state: State) => state.auth.isLogged;
+export const selectIsLogged = createSelector(
+  (state: State) => state.auth.isLogged,
+  isLogged => isLogged,
+);
 export const selectError = (state: State) => state.auth.error;
 
 export default authSlice.reducer;
