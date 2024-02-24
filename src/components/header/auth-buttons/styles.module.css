@@ -30,6 +30,15 @@
   }
 }
 
+.auth-buttons {
+  margin-right: 20px;
+
+  @media (width <= 525px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .auth-link {
   text-decoration: none;
   font-size: clamp(18px, 3vw, 24px);
