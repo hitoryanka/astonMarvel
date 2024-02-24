@@ -99,3 +99,12 @@
 .list-item-title {
   padding: 5px;
 }
+
+.error-link {
+  color: #ee171f;
+
+  &:hover {
+    color: #e26367;
+    cursor: pointer;
+  }
+}

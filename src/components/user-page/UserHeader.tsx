@@ -4,9 +4,14 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/features/userSlice';
 import userPNG from '../../assets/profile-user.png';
 import { useViewParam } from './lib';
+import { useNavigate } from 'react-router-dom';
 
 export function UserHeader() {
   const { email } = useSelector(selectUser);
+  const navigate = useNavigate();
+  if (email === 'null') {
+    navigate('./heroes');
+  }
 
   return (
     <header className={s['user-header']}>
