@@ -36,7 +36,7 @@
    - [x] [Страница регистрации](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/SIgnup.tsx)
    - [x] [Страница входа пользователя](https://github.com/hitoryanka/astonMarvel/blob/main/src/components/auth/Signin.tsx)
 
-- [x] Для хранения учетных записей пользователей, их Избранного и Истории поиска, используем **LocalStorage**.
+- [x] [Для хранения учетных записей пользователей, их Избранного и Истории поиска, используем **LocalStorage**.](https://github.com/hitoryanka/astonMarvel/blob/main/src/store/features/lib/userLib.ts)
 
 **React**
 
