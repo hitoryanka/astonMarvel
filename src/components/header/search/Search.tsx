@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 export function Search() {
   const [searchQuery, setSearchQuery] = useSearchQuery();
-  console.log(searchQuery);
   const [search, setSearch] = useState(searchQuery);
 
   useMemo(() => {
