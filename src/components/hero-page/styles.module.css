@@ -17,6 +17,7 @@
 
 .hero-name-wrapper {
   display: flex;
+  align-items: baseline;
 }
 
 .hero-name {
