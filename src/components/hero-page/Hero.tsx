@@ -4,11 +4,13 @@ import s from './styles.module.css';
 import { FeaturedList } from './FeaturedList';
 import { Suspense, SyntheticEvent, useState } from 'react';
 import { FavoriteButton } from '../heroes/components/FavoriteButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addToFavorites,
   removeFromFavorites,
+  selectFavorites,
 } from '../../store/features/userSlice';
+import { checkIsFavorite } from '../heroes/components/HeroCard';
 
 export function Hero() {
   const { id } = useParams();
@@ -63,7 +65,10 @@ interface HeroNameProps {
 }
 
 function HeroName({ name, id, cover }: HeroNameProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const favorites = useSelector(selectFavorites);
+  const [isFavorite, setIsFavorite] = useState(
+    checkIsFavorite(id, favorites),
+  );
   const dispatch = useDispatch();
   const toggleFavorite = (e: SyntheticEvent) => {
     e.stopPropagation();
