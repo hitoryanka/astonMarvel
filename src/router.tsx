@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { Heroes } from './components/heroes/Heroes';
 import { Signup } from './components/auth/SIgnup';
 import { Signin } from './components/auth/Signin';
@@ -10,6 +10,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ErrorFallback } from './ErrorFallback';
 
 export const router = createBrowserRouter([
+  { path: '/', element: <Navigate to="/heroes" replace /> },
   {
     path: '/*',
     element: <NotFountPage />,

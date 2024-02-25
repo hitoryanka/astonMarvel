@@ -15,6 +15,10 @@
   font-family: 'Marvel', sans-serif;
 }
 
+.hero-name-wrapper {
+  display: flex;
+}
+
 .hero-name {
   font-size: clamp(28px, 5vw, 48px);
 }
