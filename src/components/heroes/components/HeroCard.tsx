@@ -63,6 +63,9 @@ export function HeroCard(props: heroCardProps) {
   );
 }
 
-function checkIsFavorite(id: number, favorites: FavoriteCharacter[]) {
+export function checkIsFavorite(
+  id: number,
+  favorites: FavoriteCharacter[],
+) {
   return Boolean(favorites.find(hero => hero.id === id));
 }
