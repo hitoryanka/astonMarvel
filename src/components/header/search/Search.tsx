@@ -1,5 +1,5 @@
 import s from './styles.module.css';
-import r, { useState } from 'react';
+import r, { useMemo, useState } from 'react';
 import { useDebounce, useSearchQuery } from './hooks';
 import { SearchSuggest } from './SearchSuggest';
 import { useDispatch } from 'react-redux';
@@ -7,9 +7,15 @@ import { addToHistory } from '../../../store/features/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 export function Search() {
-  const [search, setSearch] = useState('');
+  const [searchQuery, setSearchQuery] = useSearchQuery();
+  console.log(searchQuery);
+  const [search, setSearch] = useState(searchQuery);
+
+  useMemo(() => {
+    setSearch(searchQuery);
+  }, [searchQuery]);
+
   const debouncedValue = useDebounce(search, 1000);
-  const [, setSearchQuery] = useSearchQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

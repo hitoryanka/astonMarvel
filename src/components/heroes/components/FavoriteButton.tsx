@@ -2,8 +2,8 @@ import { SyntheticEvent } from 'react';
 import s from '../styles.module.css';
 import favoriteActive from '../../../assets/favorites-active.png';
 import favorite from '../../../assets/favorites.png';
-import { useSelector } from 'react-redux';
 import { selectIsLogged } from '../../../store/features/authSlice';
+import { useSelector } from 'react-redux';
 
 interface FavoriteButtonProps {
   isFavorite: boolean;

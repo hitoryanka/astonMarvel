@@ -5,13 +5,15 @@ import { selectUser } from '../../store/features/userSlice';
 import userPNG from '../../assets/profile-user.png';
 import { useViewParam } from './lib';
 import { useNavigate } from 'react-router-dom';
+import { selectIsLogged } from '../../store/features/authSlice';
 
 export function UserHeader() {
   const { email } = useSelector(selectUser);
+  const isLogged = useSelector(selectIsLogged);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (email === 'null') {
+    if (!isLogged) {
       navigate('/heroes');
     }
   });
